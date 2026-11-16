@@ -27,17 +27,8 @@
             top: 0;
             z-index: 100;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-        }
-        .points-badge {
-            background-color: #222;
-            color: #2ecc71;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            border: 1px solid #2ecc71;
-            font-weight: 500;
         }
         .container {
             padding: 15px;
@@ -45,21 +36,27 @@
             margin: 0 auto;
         }
         
-        /* Banner 728x90 Responsivo para móvil */
+        /* Banner 728x90 Escalado y Compacto para Móvil */
         .ad-container-top {
             background-color: #181818;
             border: 1px solid #2a2a2a;
-            padding: 8px;
-            text-align: center;
-            margin-bottom: 15px;
-            border-radius: 8px;
+            width: 100%;
+            height: 52px;
             overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
-            width: 100%;
+            align-items: center;
         }
         .ad-container-top iframe {
-            max-width: 100%;
+            width: 728px;
+            height: 90px;
+            border: none;
+            transform: scale(0.46);
+            transform-origin: center;
+            position: absolute;
         }
 
         .view-section { display: none; }
@@ -240,7 +237,6 @@
         .tag-normal { background-color: rgba(170, 170, 170, 0.1); color: #aaa; border: 1px solid #444; }
 
         .post-header { font-size: 12px; color: #888; margin-bottom: 4px; }
-        .post-sub-meta { font-size: 11px; color: #2ecc71; margin-bottom: 10px; }
         .post-content { font-size: 14px; margin-bottom: 10px; line-height: 1.4; color: #ddd; }
         .post-media {
             width: 100%;
@@ -248,6 +244,13 @@
             object-fit: cover;
             border-radius: 6px;
             margin-bottom: 10px;
+        }
+        .post-video {
+            width: 100%;
+            max-height: 280px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background: #000;
         }
         .post-actions {
             display: flex;
@@ -268,7 +271,6 @@
         .action-btn.liked { color: #e74c3c; font-weight: 600; }
         .action-btn.report-btn { color: #e67e22; font-size: 11px; }
 
-        /* Opciones de Dueño (Editar/Borrar) */
         .owner-actions {
             display: flex;
             gap: 8px;
@@ -396,7 +398,6 @@
 
     <header>
         <span>Click & Win 🎮</span>
-        <span class="points-badge" id="userPoints">💎 100 Pts</span>
     </header>
 
     <div class="toast" id="toastMsg">Aviso</div>
@@ -423,7 +424,7 @@
     </div>
 
     <div class="container">
-        <!-- Banner Superior Adsterra 728x90 (Responsivo) -->
+        <!-- Banner Superior Adsterra 728x90 (Escalado y Ajustado) -->
         <div class="ad-container-top">
             <script>
               atOptions = {
@@ -439,10 +440,10 @@
 
         <!-- SECCIÓN 1: HOME / FEED -->
         <div id="section-home" class="view-section active">
-            <!-- Formulario de Publicación -->
+            <!-- Formulario de Publicación Limpio (Sin Anunciante) -->
             <div class="new-post-box" id="newPostBox">
                 <h3>📢 Nueva Publicación</h3>
-                <textarea id="postInput" rows="3" placeholder="Escribe el texto de tu publicación o anuncio..."></textarea>
+                <textarea id="postInput" rows="3" placeholder="Escribe el texto de tu publicación..."></textarea>
                 <label class="file-input-label" for="mediaFile">📁 Seleccionar Imagen o Video</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*" style="display:none;" onchange="previewMedia(this)">
                 <div id="mediaFileName" style="font-size:11px; color:#2ecc71; margin-bottom:6px;"></div>
@@ -452,17 +453,15 @@
             <div id="feedContainer"></div>
         </div>
 
-        <!-- SECCIÓN 2: PERFIL Y NIVELES (Con Botonera Izquierda y Guía de Monetización) -->
+        <!-- SECCIÓN 2: PERFIL Y NIVELES (Con Tracker de Monetizados) -->
         <div id="section-perfil" class="view-section">
             <div class="profile-layout">
-                <!-- Botonera e información a la izquierda -->
                 <div class="profile-sidebar">
                     <h4>🛠️ Panel de Control</h4>
                     <button class="menu-btn" onclick="scrollToMonetizeGuide()">💡 Cómo Monetizar</button>
                     <button class="menu-btn" onclick="switchTab('ganancias')">💲 Ver Ganancias</button>
                 </div>
 
-                <!-- Tarjeta Principal del Perfil -->
                 <div class="profile-card">
                     <div class="profile-tier" id="userTierBadge">Starter</div>
                     <h2 id="userNameDisplay" style="font-size:18px; margin-bottom:5px;">@JorgeCalas</h2>
@@ -497,14 +496,22 @@
                     <div id="timerCooldownBox" style="font-size:12px; color:#e74c3c; margin-top:8px; font-weight:600;"></div>
                 </div>
 
+                <!-- Tracker de Publicaciones Monetizadas del Usuario (Vigencia 5 Días) -->
+                <div class="profile-sidebar">
+                    <h4>🚀 Mis Publicaciones Monetizadas (Vigencia 5 Días)</h4>
+                    <div id="myMonetizedList" style="margin-top: 8px;">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+
                 <!-- Guía explicativa "Cómo Monetizar" -->
                 <div class="profile-sidebar" id="monetizeGuideBox">
                     <h4>📘 Guía: Cómo Monetizar</h4>
                     <p style="font-size:12px; color:#bbb; line-height: 1.5; margin-top: 6px;">
-                        Subes tu contenido, tienes 3 contenidos diarios para monetizar siguiendo la siguiente estrategia:<br><br>
-                        1. Presionas el botón que dice activar publicación.<br>
+                        Subes tu contenido, tienes 3 contenidos diarios para monetizar siguiendo la estrategia:<br><br>
+                        1. Presionas el botón de activar publicación en tu perfil.<br>
                         2. Ves el anuncio publicitario durante 15 segundos.<br>
-                        3. Al finalizar, tu próxima publicación quedará monetizada automáticamente y lista para generar puntos mediante interacciones reales.
+                        3. Al finalizar, tu próxima publicación quedará monetizada con un ciclo de vida de 5 días para generar puntos.
                     </p>
                 </div>
             </div>
@@ -514,7 +521,7 @@
         <div id="section-ganancias" class="view-section">
             <div class="profile-card" style="text-align: left;">
                 <h3 style="font-size:15px; color:#2ecc71; margin-bottom:8px;">💲 Panel de Ganancias</h3>
-                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Tus puntos se acumulan por la interacción real en tus publicaciones monetizadas activas (Vigencia de 5 días por ID).</p>
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Tus puntos se acumulan por la interacción real en tus publicaciones monetizadas activas.</p>
                 <hr style="border:0; border-top:1px solid #222; margin:12px 0;">
                 <div style="font-size:14px; margin-bottom:6px;">💎 Saldo Actual: <b id="gananciasPoints" style="color:#2ecc71;">100 Pts</b></div>
                 <div style="font-size:13px; margin-bottom:6px;">💵 Equivalente USD: <b id="gananciasUsd" style="color:#fff;">$0.010 USD</b></div>
@@ -533,32 +540,29 @@
     </nav>
 
     <script>
-        // --- ESTADOS Y LOCALSTORAGE ---
         let points = parseInt(localStorage.getItem('cw_points')) || 100;
-        let totalLikesToday = parseInt(localStorage.getItem('cw_tlikes')) || 0; // max 40
-        let totalCommsToday = parseInt(localStorage.getItem('cw_tcomms')) || 0; // max 40
+        let totalLikesToday = parseInt(localStorage.getItem('cw_tlikes')) || 0;
+        let totalCommsToday = parseInt(localStorage.getItem('cw_tcomms')) || 0;
         let referrals = parseInt(localStorage.getItem('cw_refs')) || 0;
-        let dailyMonetizedCount = parseInt(localStorage.getItem('cw_dcount')) || 0; // 0 a 3
+        let dailyMonetizedCount = parseInt(localStorage.getItem('cw_dcount')) || 0;
         let lastActionTime = parseInt(localStorage.getItem('cw_last_action')) || 0;
         let lastResetDate = localStorage.getItem('cw_last_reset') || "";
         
-        let interactedUsers = JSON.parse(localStorage.getItem('cw_interacted')) || {}; // {postId: timestamp}
+        let interactedUsers = JSON.parse(localStorage.getItem('cw_interacted')) || {};
         let pendingMonetizationActivation = false;
         let tempMediaData = "";
+        let tempMediaType = ""; // 'image' o 'video'
 
-        // Verificador de Corte Diario a las 6:00 PM
         function checkDailyReset6PM() {
             const now = new Date();
             const todayStr = now.toISOString().split('T')[0];
-            
-            // Definir las 6:00 PM (18:00) de hoy
             const resetTimeToday = new Date();
             resetTimeToday.setHours(18, 0, 0, 0);
 
             if (lastResetDate !== todayStr && now >= resetTimeToday) {
                 totalLikesToday = 0;
                 totalCommsToday = 0;
-                interactedUsers = {}; // Limpiar restricciones de 24h
+                interactedUsers = {};
                 lastResetDate = todayStr;
                 localStorage.setItem('cw_last_reset', todayStr);
                 localStorage.setItem('cw_tlikes', 0);
@@ -582,6 +586,7 @@
                 time: "Hace 1 hora",
                 text: "Bienvenidos a Click & Win. Apoya los negocios locales y monetiza tu contenido.",
                 media: "",
+                mediaType: "image",
                 likes: 5,
                 liked: false,
                 comments: ["¡Excelente plataforma!"],
@@ -596,13 +601,11 @@
 
         function updateUI() {
             checkDailyReset6PM();
-            document.getElementById('userPoints').innerText = `💎 ${points} Pts`;
             document.getElementById('refCount').innerText = referrals;
             document.getElementById('dailyQuotaDisplay').innerText = `${dailyMonetizedCount} / 3`;
             document.getElementById('gananciasPoints').innerText = `${points} Pts`;
             document.getElementById('gananciasUsd').innerText = `$${(points / 10000).toFixed(4)} USD`;
 
-            // Actualizar Barras de Energía en Perfil
             const likesRemaining = Math.max(0, 40 - totalLikesToday);
             const commsRemaining = Math.max(0, 40 - totalCommsToday);
             document.getElementById('likesTextEnergy').innerText = `${likesRemaining} / 40`;
@@ -629,6 +632,7 @@
             localStorage.setItem('cw_dcount', dailyMonetizedCount);
             localStorage.setItem('cw_posts', JSON.stringify(posts));
 
+            renderMyMonetizedPosts();
             checkTimersAndButtons();
         }
 
@@ -667,7 +671,7 @@
                     const remaining = 3 - dailyMonetizedCount;
                     showToast(`Tienes ${remaining} publicaciones monetizables disponibles. Ve a tu perfil para activarlas.`);
                 } else {
-                    showToast("✅ ¡Tienes una activación lista! Sube tu contenido.");
+                    showToast("✅ ¡Activación lista! Sube tu contenido.");
                 }
             }
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
@@ -675,12 +679,14 @@
 
         function previewMedia(input) {
             if (input.files && input.files[0]) {
+                const file = input.files[0];
+                tempMediaType = file.type.startsWith('video') ? 'video' : 'image';
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     tempMediaData = e.target.result;
-                    document.getElementById('mediaFileName').innerText = "Archivo cargado: " + input.files[0].name;
+                    document.getElementById('mediaFileName').innerText = "Archivo cargado: " + file.name;
                 }
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(file);
             }
         }
 
@@ -707,6 +713,7 @@
                 time: "Hace un momento",
                 text: text,
                 media: tempMediaData,
+                mediaType: tempMediaType,
                 likes: 0,
                 liked: false,
                 comments: [],
@@ -714,13 +721,14 @@
                 tier: tier.name,
                 maxLikes: tier.maxLikes,
                 createdAt: Date.now(),
-                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000)
+                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000) // Vigencia 5 días
             });
 
             document.getElementById('postInput').value = '';
             document.getElementById('mediaFile').value = '';
             document.getElementById('mediaFileName').innerText = '';
             tempMediaData = "";
+            tempMediaType = "";
             document.getElementById('newPostBox').style.display = 'none';
 
             updateUI();
@@ -736,7 +744,7 @@
         }
 
         function editPost(id) {
-            const post = posts.find(p => p.id !== undefined && p.id === id);
+            const post = posts.find(p => p.id === id);
             if (!post) return;
             const newText = prompt("Editar texto de la publicación:", post.text);
             if (newText !== null && newText.trim() !== "") {
@@ -748,7 +756,7 @@
         }
 
         function reportPost(id) {
-            showToast("🚨 Publicación reportada al administrador. Gracias por mantener segura la comunidad.");
+            showToast("🚨 Publicación reportada al administrador.");
         }
 
         function startActivationFlow() {
@@ -827,6 +835,43 @@
             cooldownBox.innerText = "";
         }
 
+        // Renderizador del Tracker de Monetizados en el Perfil
+        function renderMyMonetizedPosts() {
+            const container = document.getElementById('myMonetizedList');
+            if (!container) return;
+            container.innerHTML = '';
+            const now = Date.now();
+            
+            const myPosts = posts.filter(p => p.user === '@JorgeCalas' && p.monetized);
+            if (myPosts.length === 0) {
+                container.innerHTML = '<p style="font-size:11px; color:#888;">No tienes publicaciones monetizadas activas.</p>';
+                return;
+            }
+
+            myPosts.forEach(post => {
+                const timeLeft = post.expiresAt - now;
+                let timeStr = "";
+                let isExp = false;
+                if (timeLeft <= 0) {
+                    timeStr = "Expirado (Ciclo de 5 días finalizado)";
+                    isExp = true;
+                } else {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    timeStr = `Expira en: ${days}d ${hours}h`;
+                }
+
+                const item = document.createElement('div');
+                item.style.cssText = "background:#121212; border:1px solid #333; padding:8px; border-radius:6px; margin-bottom:6px; font-size:11px;";
+                item.innerHTML = `
+                    <div style="color:#2ecc71; font-weight:600; margin-bottom:2px;">${isExp ? '🔴 Expirado' : '🟢 Activo (' + post.tier + ')'}</div>
+                    <div style="color:#ddd; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"${post.text}"</div>
+                    <div style="color:#e74c3c; font-weight:600;">⏱️ ${timeStr}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
         // Renderizado del Feed con inyección del Banner 300x250 cada 4 posts
         function renderFeed() {
             const container = document.getElementById('feedContainer');
@@ -834,7 +879,6 @@
             const now = Date.now();
 
             posts.forEach((post, index) => {
-                // Inyectar banner de Adsterra 300x250 cada 4 publicaciones
                 if (index > 0 && index % 4 === 0) {
                     const adCard = document.createElement('div');
                     adCard.className = 'ad-card-feed';
@@ -855,7 +899,15 @@
 
                 let isExpired = post.monetized && (now > post.expiresAt);
                 const commentsHTML = post.comments.map(c => `<div class="comment-item">💬 ${c}</div>`).join('');
-                const mediaHTML = post.media ? `<img src="${post.media}" class="post-media" onerror="this.style.display='none'">` : '';
+                
+                let mediaHTML = "";
+                if (post.media) {
+                    if (post.mediaType === 'video') {
+                        mediaHTML = `<video src="${post.media}" class="post-video" controls></video>`;
+                    } else {
+                        mediaHTML = `<img src="${post.media}" class="post-media" onerror="this.style.display='none'">`;
+                    }
+                }
                 
                 let tagClass = "tag-normal";
                 let tagText = "Normal";
@@ -872,7 +924,6 @@
                     </div>
                 ` : '';
 
-                // Verificar restricción de 24h para likes únicos a este post
                 const card = document.createElement('div');
                 card.className = 'post-card';
                 card.innerHTML = `
@@ -909,7 +960,6 @@
             const now = Date.now();
             const isPostActive = post.monetized && (now <= post.expiresAt);
 
-            // Validar restricción de 24h por objetivo o límite diario de 40 likes
             const lastLikedTime = interactedUsers[post.id] || 0;
             const hoursSinceLastLike = (now - lastLikedTime) / (1000 * 60 * 60);
 
@@ -921,7 +971,7 @@
                 delete interactedUsers[post.id];
             } else {
                 if (hoursSinceLastLike < 24 && lastLikedTime !== 0) {
-                    showToast("⚠️ Ya le diste like a este usuario/post en las últimas 24 horas.");
+                    showToast("⚠️ Ya le diste like a este post en las últimas 24 horas.");
                     return;
                 }
                 if (points < 10) {
@@ -929,7 +979,7 @@
                     return;
                 }
                 if (totalLikesToday >= 40) {
-                    showToast("⚠️ Límite de 40 likes diarios alcanzado (Se reinicia a las 6:00 PM)");
+                    showToast("⚠️ Límite de 40 likes diarios alcanzado");
                     return;
                 }
                 if (isPostActive && post.likes >= post.maxLikes) {
@@ -944,7 +994,7 @@
                 interactedUsers[post.id] = now;
 
                 if (isPostActive) {
-                    points += 10; // +10 Pts (0.001 USD)
+                    points += 10;
                 }
             }
             localStorage.setItem('cw_interacted', JSON.stringify(interactedUsers));
@@ -959,11 +1009,11 @@
 
         function addComment(index) {
             if (points < 10) {
-                showToast("⚠️ Saldo insuficiente para comentar (Requiere 10 Pts)");
+                showToast("⚠️ Saldo insuficiente para comentar");
                 return;
             }
             if (totalCommsToday >= 40) {
-                showToast("⚠️ Límite de 40 comentarios diarios alcanzado (Se reinicia a las 6:00 PM)");
+                showToast("⚠️ Límite de 40 comentarios diarios alcanzado");
                 return;
             }
 
@@ -976,7 +1026,7 @@
                 
                 const now = Date.now();
                 if (posts[index].monetized && now <= posts[index].expiresAt) {
-                    points += 5; // +5 Pts (0.0005 USD)
+                    points += 5;
                 }
 
                 updateUI();
@@ -989,6 +1039,7 @@
         setInterval(() => {
             checkTimersAndButtons();
             checkDailyReset6PM();
+            renderMyMonetizedPosts();
         }, 1000);
 
         updateUI();
