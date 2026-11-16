@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Click & Win Social</title>
+    <title>Click & Win</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,28 +15,36 @@
             background-color: #121212;
             color: #e0e0e0;
             padding-bottom: 75px;
+            padding-top: 50px;
         }
+        /* Header Sobrio y Profesional */
         header {
             background-color: #181818;
-            padding: 12px 15px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            border-bottom: 1px solid #2a2a2a;
-            position: sticky;
+            height: 50px;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+            z-index: 100;
         }
+        header h1 {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+        
         .container {
             padding: 15px;
             max-width: 600px;
             margin: 0 auto;
         }
-        
-        /* Banner 728x90 Escalado y Compacto para Móvil */
+
+        /* Banner Superior 728x90 Proporcional para Móvil */
         .ad-container-top {
             background-color: #181818;
             border: 1px solid #2a2a2a;
@@ -59,372 +67,89 @@
             position: absolute;
         }
 
+        /* Secciones de la App */
         .view-section { display: none; }
         .view-section.active { display: block; }
-        
-        /* Perfil Estilo Matte */
-        .profile-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .profile-sidebar {
-            background-color: #181818;
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #2a2a2a;
-        }
-        .profile-sidebar h4 {
-            font-size: 14px;
-            color: #2ecc71;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #2a2a2a;
-            padding-bottom: 5px;
-        }
-        .menu-btn {
-            background: #222;
-            color: #ddd;
-            border: 1px solid #333;
-            width: 100%;
-            padding: 10px;
-            text-align: left;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            margin-bottom: 8px;
-            transition: background 0.2s;
-        }
-        .menu-btn:hover { background: #2a2a2a; color: #fff; }
 
-        .profile-card {
-            background-color: #181818;
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid #2a2a2a;
+        .empty-state {
             text-align: center;
-        }
-        .profile-tier {
-            display: inline-block;
-            background-color: #333;
-            color: #2ecc71;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
-            border: 1px solid #2ecc71;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .profile-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 15px 0;
+            padding: 40px 20px;
+            color: #777;
             font-size: 13px;
-        }
-        .stat-box {
-            background: #121212;
-            padding: 10px;
-            border-radius: 8px;
-            flex: 1;
-            margin: 0 5px;
-            border: 1px solid #222;
-        }
-        .stat-box b { display: block; color: #2ecc71; font-size: 15px; margin-top: 4px; }
-
-        /* Barras de Energía en Perfil */
-        .energy-bars-container {
-            background: #121212;
-            padding: 12px;
-            border-radius: 8px;
+            background: #181818;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
             margin-top: 15px;
-            border: 1px solid #222;
-            text-align: left;
-        }
-        .energy-title { font-size: 12px; color: #aaa; margin-bottom: 6px; display: flex; justify-content: space-between; }
-        .progress-bar-bg {
-            background: #222;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        .progress-bar-fill {
-            background: #2ecc71;
-            height: 100%;
-            width: 100%;
-            transition: width 0.3s ease;
-        }
-        .progress-bar-fill.comment { background: #3498db; }
-
-        .activate-btn {
-            background-color: #2ecc71;
-            color: #121212;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .activate-btn:disabled { background-color: #262626; color: #666; cursor: not-allowed; border: 1px solid #333; }
-
-        /* Formulario de Publicación */
-        .new-post-box {
-            background-color: #181818;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #2a2a2a;
-            display: none;
-        }
-        .new-post-box h3 { font-size: 14px; margin-bottom: 10px; color: #2ecc71; font-weight: 600; }
-        .new-post-box textarea {
-            width: 100%;
-            background-color: #121212;
-            color: #fff;
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 10px;
-            font-size: 13px;
-            margin-bottom: 10px;
-            resize: none;
-        }
-        .file-input-label {
-            display: block;
-            background-color: #222;
-            border: 1px dashed #444;
-            padding: 10px;
-            text-align: center;
-            border-radius: 6px;
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .publish-btn {
-            background-color: #2ecc71;
-            color: #121212;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            width: 100%;
         }
 
-        /* Tarjetas del Feed */
-        .post-card {
-            background-color: #181818;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #2a2a2a;
-            position: relative;
-        }
-        .post-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        .tag-monetized { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; }
-        .tag-normal { background-color: rgba(170, 170, 170, 0.1); color: #aaa; border: 1px solid #444; }
-
-        .post-header { font-size: 12px; color: #888; margin-bottom: 4px; }
-        .post-content { font-size: 14px; margin-bottom: 10px; line-height: 1.4; color: #ddd; }
-        .post-media {
-            width: 100%;
-            max-height: 280px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-        .post-video {
-            width: 100%;
-            max-height: 280px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            background: #000;
-        }
-        .post-actions {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid #222;
-            padding-top: 10px;
-        }
-        .action-btn {
-            background: none;
-            border: none;
-            color: #999;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .action-btn.liked { color: #e74c3c; font-weight: 600; }
-        .action-btn.report-btn { color: #e67e22; font-size: 11px; }
-
-        .owner-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-            font-size: 12px;
-        }
-        .owner-actions button {
-            background: #222;
-            color: #ccc;
-            border: 1px solid #333;
-            padding: 3px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Comentarios */
-        .comments-section {
-            margin-top: 10px;
-            padding-top: 8px;
-            border-top: 1px solid #222;
-            display: none;
-        }
-        .comment-item {
-            background-color: #121212;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-        .comment-input-row { display: flex; gap: 6px; margin-top: 8px; }
-        .comment-input-row input {
-            flex: 1;
-            background-color: #121212;
-            border: 1px solid #333;
-            color: #fff;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-        }
-        .comment-input-row button {
-            background-color: #252525;
-            color: #fff;
-            border: 1px solid #333;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        /* Bloque de Anuncio dinámico en Feed (300x250) */
-        .ad-card-feed {
-            background-color: #181818;
-            border: 1px solid #2a2a2a;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        /* Ventana Modal Publicitaria (Adsterra 15s) */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            padding: 20px;
-        }
-        .modal-content {
-            background-color: #181818;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 330px;
-            text-align: center;
-            border: 1px solid #333;
-            position: relative;
-        }
-        .modal-timer {
-            font-size: 13px;
-            color: #e74c3c;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .close-modal-btn {
-            position: absolute;
-            top: 8px; right: 8px;
-            background: #252525; color: #fff;
-            border: 1px solid #444; width: 26px; height: 26px;
-            border-radius: 50%; font-weight: 600; cursor: pointer;
-            display: none;
-        }
-
-        /* Toast de avisos */
+        /* Toast de Alertas Estilo Mate */
         .toast {
             position: fixed;
-            top: 60px; left: 50%; transform: translateX(-50%);
-            background-color: #222; color: #fff; border: 1px solid #444;
-            padding: 8px 16px; border-radius: 20px;
-            font-size: 12px; font-weight: 500; z-index: 4000;
-            display: none; text-align: center; max-width: 90%;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1c1c1c;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            z-index: 4000;
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        /* Barra Inferior */
+        /* Barra de Navegación Inferior Profesional (Iconos de Trazo) */
         nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background-color: #181818; border-top: 1px solid #2a2a2a;
-            display: flex; justify-content: space-around; padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #181818;
+            border-top: 1px solid #2a2a2a;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
             z-index: 1000;
         }
         .nav-item {
-            background: none; border: none; color: #777;
-            font-size: 11px; text-align: center; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; gap: 3px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 10px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
         }
         .nav-item.active { color: #2ecc71; }
-        .nav-item span.icon { font-size: 18px; }
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <span>Click & Win 🎮</span>
+        <h1>Click & Win</h1>
     </header>
 
-    <div class="toast" id="toastMsg">Aviso</div>
-
-    <!-- Modal Publicitario con Adsterra 300x250 y Temporizador 15s -->
-    <div class="modal-overlay" id="adModal">
-        <div class="modal-content">
-            <button class="close-modal-btn" id="closeModalBtn" onclick="closeAdModal()">✕</button>
-            <div class="modal-timer" id="modalTimerText">Espera a que finalice el tiempo: 15s</div>
-            <div style="display:flex; justify-content:center; overflow:hidden;">
-                <!-- Código Adsterra 300x250 -->
-                <script>
-                  atOptions = {
-                    'key' : '4dfb9a5937a21eac92dacd7d5199d46c',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                  };
-                </script>
-                <script src="https://bicea.org/22/4dfb9a5937a21eac92dacd7d5199d46c"></script>
-            </div>
-        </div>
-    </div>
+    <div class="toast" id="toastMsg">Aviso del sistema</div>
 
     <div class="container">
-        <!-- Banner Superior Adsterra 728x90 (Escalado y Ajustado) -->
+        <!-- Banner Superior Adsterra 728x90 -->
         <div class="ad-container-top">
             <script>
               atOptions = {
@@ -438,612 +163,88 @@
             <script src="https://bicea.org/22/94a60368d80726e04cbdceea35d7410e"></script>
         </div>
 
-        <!-- SECCIÓN 1: HOME / FEED -->
+        <!-- SECCIÓN 1: HOME / FEED (Vacío inicialmente) -->
         <div id="section-home" class="view-section active">
-            <!-- Formulario de Publicación Limpio (Sin Anunciante) -->
-            <div class="new-post-box" id="newPostBox">
-                <h3>📢 Nueva Publicación</h3>
-                <textarea id="postInput" rows="3" placeholder="Escribe el texto de tu publicación..."></textarea>
-                <label class="file-input-label" for="mediaFile">📁 Seleccionar Imagen o Video</label>
-                <input type="file" id="mediaFile" accept="image/*,video/*" style="display:none;" onchange="previewMedia(this)">
-                <div id="mediaFileName" style="font-size:11px; color:#2ecc71; margin-bottom:6px;"></div>
-                <button class="publish-btn" onclick="executePublish()">Confirmar Publicación</button>
-            </div>
-
-            <div id="feedContainer"></div>
-        </div>
-
-        <!-- SECCIÓN 2: PERFIL Y NIVELES (Con Tracker de Monetizados) -->
-        <div id="section-perfil" class="view-section">
-            <div class="profile-layout">
-                <div class="profile-sidebar">
-                    <h4>🛠️ Panel de Control</h4>
-                    <button class="menu-btn" onclick="scrollToMonetizeGuide()">💡 Cómo Monetizar</button>
-                    <button class="menu-btn" onclick="switchTab('ganancias')">💲 Ver Ganancias</button>
-                </div>
-
-                <div class="profile-card">
-                    <div class="profile-tier" id="userTierBadge">Starter</div>
-                    <h2 id="userNameDisplay" style="font-size:18px; margin-bottom:5px;">@JorgeCalas</h2>
-                    <div class="profile-stats">
-                        <div class="stat-box">Referidos <b id="refCount">0</b></div>
-                        <div class="stat-box">Cupos Hoy <b id="dailyQuotaDisplay">0 / 3</b></div>
-                    </div>
-                    <p id="tierInfoText" style="font-size:11px; color:#aaa; margin-bottom:10px; line-height: 1.4;">
-                        Nivel Starter: Límite de 100 likes por post.
-                    </p>
-                    
-                    <!-- Barras de Energía Diarias -->
-                    <div class="energy-bars-container">
-                        <div class="energy-title">
-                            <span>❤️ Likes Disponibles Hoy</span>
-                            <span id="likesTextEnergy">40 / 40</span>
-                        </div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill" id="likesBarFill" style="width: 100%;"></div>
-                        </div>
-
-                        <div class="energy-title">
-                            <span>💬 Comentarios Disponibles Hoy</span>
-                            <span id="commsTextEnergy">40 / 40</span>
-                        </div>
-                        <div class="progress-bar-bg">
-                            <div class="progress-bar-fill comment" id="commsBarFill" style="width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <button class="activate-btn" id="activateQuotaBtn" onclick="startActivationFlow()">Activar Publicación Monetizable (0/3)</button>
-                    <div id="timerCooldownBox" style="font-size:12px; color:#e74c3c; margin-top:8px; font-weight:600;"></div>
-                </div>
-
-                <!-- Tracker de Publicaciones Monetizadas del Usuario (Vigencia 5 Días) -->
-                <div class="profile-sidebar">
-                    <h4>🚀 Mis Publicaciones Monetizadas (Vigencia 5 Días)</h4>
-                    <div id="myMonetizedList" style="margin-top: 8px;">
-                        <!-- Se llena dinámicamente -->
-                    </div>
-                </div>
-
-                <!-- Guía explicativa "Cómo Monetizar" -->
-                <div class="profile-sidebar" id="monetizeGuideBox">
-                    <h4>📘 Guía: Cómo Monetizar</h4>
-                    <p style="font-size:12px; color:#bbb; line-height: 1.5; margin-top: 6px;">
-                        Subes tu contenido, tienes 3 contenidos diarios para monetizar siguiendo la estrategia:<br><br>
-                        1. Presionas el botón de activar publicación en tu perfil.<br>
-                        2. Ves el anuncio publicitario durante 15 segundos.<br>
-                        3. Al finalizar, tu próxima publicación quedará monetizada con un ciclo de vida de 5 días para generar puntos.
-                    </p>
-                </div>
+            <div class="empty-state">
+                No hay publicaciones en el feed todavía.
             </div>
         </div>
 
-        <!-- SECCIÓN 3: GANANCIAS / CONVERSIÓN -->
+        <!-- SECCIÓN 2: VIDEOS / REELS -->
+        <div id="section-videos" class="view-section">
+            <div class="empty-state">
+                Sección de videos y reels en desarrollo.
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: GANANCIAS -->
         <div id="section-ganancias" class="view-section">
-            <div class="profile-card" style="text-align: left;">
-                <h3 style="font-size:15px; color:#2ecc71; margin-bottom:8px;">💲 Panel de Ganancias</h3>
-                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Tus puntos se acumulan por la interacción real en tus publicaciones monetizadas activas.</p>
-                <hr style="border:0; border-top:1px solid #222; margin:12px 0;">
-                <div style="font-size:14px; margin-bottom:6px;">💎 Saldo Actual: <b id="gananciasPoints" style="color:#2ecc71;">100 Pts</b></div>
-                <div style="font-size:13px; margin-bottom:6px;">💵 Equivalente USD: <b id="gananciasUsd" style="color:#fff;">$0.010 USD</b></div>
-                <hr style="border:0; border-top:1px solid #222; margin:12px 0;">
-                <p style="font-size:11px; color:#888; line-height: 1.4;">• 10 Puntos = $0.001 USD<br>• 5 Puntos = $0.0005 USD<br>• 10,000 Puntos = $1.00 USD</p>
+            <div class="empty-state">
+                Panel de ganancias y conversión.
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: PERFIL -->
+        <div id="section-perfil" class="view-section">
+            <div class="empty-state">
+                Perfil de usuario y configuración de niveles.
             </div>
         </div>
     </div>
 
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación Inferior -->
     <nav>
-        <button class="nav-item active" onclick="switchTab('home', this)"><span class="icon">🏠</span> Home</button>
-        <button class="nav-item" onclick="switchTab('ganancias', this)"><span class="icon">💲</span> Ganancias</button>
-        <button class="nav-item" onclick="handlePublishNavClick()"><span class="icon">➕</span> Publicar</button>
-        <button class="nav-item" onclick="switchTab('perfil', this)"><span class="icon">👤</span> Perfil</button>
+        <!-- Home -->
+        <button class="nav-item active" onclick="switchTab('home', this)">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Home
+        </button>
+        <!-- Videos -->
+        <button class="nav-item" onclick="switchTab('videos', this)">
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            Videos
+        </button>
+        <!-- Publicar (Acción) -->
+        <button class="nav-item" onclick="handlePublishClick()">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            Publicar
+        </button>
+        <!-- Ganancias -->
+        <button class="nav-item" onclick="switchTab('ganancias', this)">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            Ganancias
+        </button>
+        <!-- Perfil -->
+        <button class="nav-item" onclick="switchTab('perfil', this)">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Perfil
+        </button>
     </nav>
 
     <script>
-        let points = parseInt(localStorage.getItem('cw_points')) || 100;
-        let totalLikesToday = parseInt(localStorage.getItem('cw_tlikes')) || 0;
-        let totalCommsToday = parseInt(localStorage.getItem('cw_tcomms')) || 0;
-        let referrals = parseInt(localStorage.getItem('cw_refs')) || 0;
-        let dailyMonetizedCount = parseInt(localStorage.getItem('cw_dcount')) || 0;
-        let lastActionTime = parseInt(localStorage.getItem('cw_last_action')) || 0;
-        let lastResetDate = localStorage.getItem('cw_last_reset') || "";
-        
-        let interactedUsers = JSON.parse(localStorage.getItem('cw_interacted')) || {};
-        let pendingMonetizationActivation = false;
-        let tempMediaData = "";
-        let tempMediaType = ""; // 'image' o 'video'
-
-        function checkDailyReset6PM() {
-            const now = new Date();
-            const todayStr = now.toISOString().split('T')[0];
-            const resetTimeToday = new Date();
-            resetTimeToday.setHours(18, 0, 0, 0);
-
-            if (lastResetDate !== todayStr && now >= resetTimeToday) {
-                totalLikesToday = 0;
-                totalCommsToday = 0;
-                interactedUsers = {};
-                lastResetDate = todayStr;
-                localStorage.setItem('cw_last_reset', todayStr);
-                localStorage.setItem('cw_tlikes', 0);
-                localStorage.setItem('cw_tcomms', 0);
-                localStorage.setItem('cw_interacted', JSON.stringify({}));
-            }
-        }
-        checkDailyReset6PM();
-
-        function getTierData() {
-            if (referrals >= 100) return { name: "Pro", maxLikes: 1000 };
-            if (referrals >= 50) return { name: "Máster", maxLikes: 500 };
-            if (referrals >= 25) return { name: "Novato", maxLikes: 200 };
-            return { name: "Starter", maxLikes: 100 };
-        }
-
-        const defaultPosts = [
-            {
-                id: 1,
-                user: "@JorgeCalas",
-                time: "Hace 1 hora",
-                text: "Bienvenidos a Click & Win. Apoya los negocios locales y monetiza tu contenido.",
-                media: "",
-                mediaType: "image",
-                likes: 5,
-                liked: false,
-                comments: ["¡Excelente plataforma!"],
-                monetized: true,
-                tier: "Starter",
-                maxLikes: 100,
-                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000)
-            }
-        ];
-
-        let posts = JSON.parse(localStorage.getItem('cw_posts')) || defaultPosts;
-
-        function updateUI() {
-            checkDailyReset6PM();
-            document.getElementById('refCount').innerText = referrals;
-            document.getElementById('dailyQuotaDisplay').innerText = `${dailyMonetizedCount} / 3`;
-            document.getElementById('gananciasPoints').innerText = `${points} Pts`;
-            document.getElementById('gananciasUsd').innerText = `$${(points / 10000).toFixed(4)} USD`;
-
-            const likesRemaining = Math.max(0, 40 - totalLikesToday);
-            const commsRemaining = Math.max(0, 40 - totalCommsToday);
-            document.getElementById('likesTextEnergy').innerText = `${likesRemaining} / 40`;
-            document.getElementById('likesBarFill').style.width = `${(likesRemaining / 40) * 100}%`;
-            document.getElementById('commsTextEnergy').innerText = `${commsRemaining} / 40`;
-            document.getElementById('commsBarFill').style.width = `${(commsRemaining / 40) * 100}%`;
-
-            const tier = getTierData();
-            document.getElementById('userTierBadge').innerText = tier.name;
-            document.getElementById('userNameDisplay').innerText = "@JorgeCalas";
-            
-            let tierDesc = `Nivel ${tier.name}: Límite de ${tier.maxLikes} likes por post. `;
-            if (tier.name === "Starter") tierDesc += `(Faltan ${25 - referrals} referidos para Novato).`;
-            else if (tier.name === "Novato") tierDesc += `(Faltan ${50 - referrals} referidos para Máster).`;
-            else if (tier.name === "Máster") tierDesc += `(Faltan ${100 - referrals} referidos para Pro).`;
-            else if (tier.name === "Pro") tierDesc += `(¡Rango Máximo Alcanzado 🚀!).`;
-            
-            document.getElementById('tierInfoText').innerText = tierDesc;
-
-            localStorage.setItem('cw_points', points);
-            localStorage.setItem('cw_tlikes', totalLikesToday);
-            localStorage.setItem('cw_tcomms', totalCommsToday);
-            localStorage.setItem('cw_refs', referrals);
-            localStorage.setItem('cw_dcount', dailyMonetizedCount);
-            localStorage.setItem('cw_posts', JSON.stringify(posts));
-
-            renderMyMonetizedPosts();
-            checkTimersAndButtons();
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toastMsg');
-            toast.innerText = msg;
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
-        }
-
+        // Función limpia de navegación entre pestañas
         function switchTab(tabName, btnElement) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('nav .nav-item').forEach(btn => btn.classList.remove('active'));
             
             document.getElementById(`section-${tabName}`).classList.add('active');
             if (btnElement) btnElement.classList.add('active');
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
         }
 
-        function scrollToMonetizeGuide() {
-            switchTab('perfil', document.querySelectorAll('nav .nav-item')[3]);
-            document.getElementById('monetizeGuideBox').scrollIntoView({ behavior: 'smooth' });
+        // Lógica solicitada para el botón Publicar
+        function handlePublishClick() {
+            // Aquí validaremos después si hay activación pendiente. Por ahora cumple la regla exacta:
+            showToast("Tienes tres publicaciones monetizables, ve al perfil y actívalas.");
         }
 
-        function handlePublishNavClick() {
-            switchTab('home', document.querySelectorAll('nav .nav-item')[0]);
-            const box = document.getElementById('newPostBox');
-            
-            if (dailyMonetizedCount >= 3) {
-                const diff = Date.now() - lastActionTime;
-                if (diff < 24 * 60 * 60 * 1000) {
-                    showToast("⚠️ Has agotado tus 3 publicaciones monetizables de hoy. Tu post saldrá como normal.");
-                }
-            } else {
-                if (!pendingMonetizationActivation) {
-                    const remaining = 3 - dailyMonetizedCount;
-                    showToast(`Tienes ${remaining} publicaciones monetizables disponibles. Ve a tu perfil para activarlas.`);
-                } else {
-                    showToast("✅ ¡Activación lista! Sube tu contenido.");
-                }
-            }
-            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        // Sistema de notificaciones Toast profesional
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
         }
-
-        function previewMedia(input) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                tempMediaType = file.type.startsWith('video') ? 'video' : 'image';
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    tempMediaData = e.target.result;
-                    document.getElementById('mediaFileName').innerText = "Archivo cargado: " + file.name;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function executePublish() {
-            const text = document.getElementById('postInput').value.trim();
-            if (!text) {
-                showToast("Escribe contenido para publicar.");
-                return;
-            }
-
-            const tier = getTierData();
-            let isMonetizedThisPost = false;
-
-            if (pendingMonetizationActivation && dailyMonetizedCount < 3) {
-                isMonetizedThisPost = true;
-                pendingMonetizationActivation = false;
-                dailyMonetizedCount++;
-                lastActionTime = Date.now();
-            }
-
-            posts.unshift({
-                id: Date.now(),
-                user: "@JorgeCalas",
-                time: "Hace un momento",
-                text: text,
-                media: tempMediaData,
-                mediaType: tempMediaType,
-                likes: 0,
-                liked: false,
-                comments: [],
-                monetized: isMonetizedThisPost,
-                tier: tier.name,
-                maxLikes: tier.maxLikes,
-                createdAt: Date.now(),
-                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000) // Vigencia 5 días
-            });
-
-            document.getElementById('postInput').value = '';
-            document.getElementById('mediaFile').value = '';
-            document.getElementById('mediaFileName').innerText = '';
-            tempMediaData = "";
-            tempMediaType = "";
-            document.getElementById('newPostBox').style.display = 'none';
-
-            updateUI();
-            renderFeed();
-            showToast(isMonetizedThisPost ? "🚀 ¡Publicación monetizada creada!" : "📢 Publicación normal creada.");
-        }
-
-        function deletePost(id) {
-            posts = posts.filter(p => p.id !== id);
-            updateUI();
-            renderFeed();
-            showToast("🗑️ Publicación eliminada.");
-        }
-
-        function editPost(id) {
-            const post = posts.find(p => p.id === id);
-            if (!post) return;
-            const newText = prompt("Editar texto de la publicación:", post.text);
-            if (newText !== null && newText.trim() !== "") {
-                post.text = newText.trim();
-                updateUI();
-                renderFeed();
-                showToast("✏️ Publicación actualizada.");
-            }
-        }
-
-        function reportPost(id) {
-            showToast("🚨 Publicación reportada al administrador.");
-        }
-
-        function startActivationFlow() {
-            if (dailyMonetizedCount >= 3) {
-                showToast("⚠️ Ya completaste las 3 publicaciones monetizables de hoy.");
-                return;
-            }
-            document.getElementById('adModal').style.display = 'flex';
-            startAdTimer();
-        }
-
-        let adCountdown = 15;
-        let adTimerInterval = null;
-
-        function startAdTimer() {
-            adCountdown = 15;
-            const timerText = document.getElementById('modalTimerText');
-            const closeBtn = document.getElementById('closeModalBtn');
-            closeBtn.style.display = 'none';
-            timerText.innerText = `Espera a que finalice el tiempo: ${adCountdown}s`;
-
-            clearInterval(adTimerInterval);
-            adTimerInterval = setInterval(() => {
-                adCountdown--;
-                if (adCountdown > 0) {
-                    timerText.innerText = `Espera a que finalice el tiempo: ${adCountdown}s`;
-                } else {
-                    clearInterval(adTimerInterval);
-                    timerText.innerText = "¡Anuncio finalizado!";
-                    closeBtn.style.display = 'block';
-                }
-            }, 1000);
-        }
-
-        function closeAdModal() {
-            document.getElementById('adModal').style.display = 'none';
-            pendingMonetizationActivation = true;
-            showToast("✨ ¡Activación completada! Ve a Publicar (+) para subir tu contenido.");
-            updateUI();
-        }
-
-        function checkTimersAndButtons() {
-            const btn = document.getElementById('activateQuotaBtn');
-            const cooldownBox = document.getElementById('timerCooldownBox');
-
-            if (dailyMonetizedCount >= 3) {
-                const elapsed = Date.now() - lastActionTime;
-                const remaining24h = (24 * 60 * 60 * 1000) - elapsed;
-                if (remaining24h > 0) {
-                    const hours = Math.floor(remaining24h / (1000 * 60 * 60));
-                    const mins = Math.floor((remaining24h % (1000 * 60 * 60)) / (1000 * 60));
-                    btn.disabled = true;
-                    btn.innerText = `Cupos agotados (${dailyMonetizedCount}/3)`;
-                    cooldownBox.innerText = `Próxima recarga en: ${hours}h ${mins}m`;
-                    return;
-                } else {
-                    dailyMonetizedCount = 0;
-                }
-            }
-
-            if (dailyMonetizedCount > 0 && dailyMonetizedCount < 3) {
-                const elapsed = Date.now() - lastActionTime;
-                const remaining1h = (60 * 60 * 1000) - elapsed;
-                if (remaining1h > 0 && !pendingMonetizationActivation) {
-                    const mins = Math.floor((remaining1h % (1000 * 60 * 60)) / (1000 * 60));
-                    const secs = Math.floor((remaining1h % (1000 * 60)) / 1000);
-                    btn.disabled = true;
-                    btn.innerText = `Enfriamiento activo`;
-                    cooldownBox.innerText = `Siguiente cupo en: ${mins}m ${secs}s`;
-                    return;
-                }
-            }
-
-            btn.disabled = pendingMonetizationActivation;
-            btn.innerText = pendingMonetizationActivation ? "✅ Cupo listo para publicar" : `Activar Publicación Monetizable (${dailyMonetizedCount}/3)`;
-            cooldownBox.innerText = "";
-        }
-
-        // Renderizador del Tracker de Monetizados en el Perfil
-        function renderMyMonetizedPosts() {
-            const container = document.getElementById('myMonetizedList');
-            if (!container) return;
-            container.innerHTML = '';
-            const now = Date.now();
-            
-            const myPosts = posts.filter(p => p.user === '@JorgeCalas' && p.monetized);
-            if (myPosts.length === 0) {
-                container.innerHTML = '<p style="font-size:11px; color:#888;">No tienes publicaciones monetizadas activas.</p>';
-                return;
-            }
-
-            myPosts.forEach(post => {
-                const timeLeft = post.expiresAt - now;
-                let timeStr = "";
-                let isExp = false;
-                if (timeLeft <= 0) {
-                    timeStr = "Expirado (Ciclo de 5 días finalizado)";
-                    isExp = true;
-                } else {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    timeStr = `Expira en: ${days}d ${hours}h`;
-                }
-
-                const item = document.createElement('div');
-                item.style.cssText = "background:#121212; border:1px solid #333; padding:8px; border-radius:6px; margin-bottom:6px; font-size:11px;";
-                item.innerHTML = `
-                    <div style="color:#2ecc71; font-weight:600; margin-bottom:2px;">${isExp ? '🔴 Expirado' : '🟢 Activo (' + post.tier + ')'}</div>
-                    <div style="color:#ddd; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">"${post.text}"</div>
-                    <div style="color:#e74c3c; font-weight:600;">⏱️ ${timeStr}</div>
-                `;
-                container.appendChild(item);
-            });
-        }
-
-        // Renderizado del Feed con inyección del Banner 300x250 cada 4 posts
-        function renderFeed() {
-            const container = document.getElementById('feedContainer');
-            container.innerHTML = '';
-            const now = Date.now();
-
-            posts.forEach((post, index) => {
-                if (index > 0 && index % 4 === 0) {
-                    const adCard = document.createElement('div');
-                    adCard.className = 'ad-card-feed';
-                    adCard.innerHTML = `
-                        <script>
-                          atOptions = {
-                            'key' : '4dfb9a5937a21eac92dacd7d5199d46c',
-                            'format' : 'iframe',
-                            'height' : 250,
-                            'width' : 300,
-                            'params' : {}
-                          };
-                        </script>
-                        <script src="https://bicea.org/22/4dfb9a5937a21eac92dacd7d5199d46c"></script>
-                    `;
-                    container.appendChild(adCard);
-                }
-
-                let isExpired = post.monetized && (now > post.expiresAt);
-                const commentsHTML = post.comments.map(c => `<div class="comment-item">💬 ${c}</div>`).join('');
-                
-                let mediaHTML = "";
-                if (post.media) {
-                    if (post.mediaType === 'video') {
-                        mediaHTML = `<video src="${post.media}" class="post-video" controls></video>`;
-                    } else {
-                        mediaHTML = `<img src="${post.media}" class="post-media" onerror="this.style.display='none'">`;
-                    }
-                }
-                
-                let tagClass = "tag-normal";
-                let tagText = "Normal";
-                if (post.monetized) {
-                    tagClass = isExpired ? "tag-normal" : "tag-monetized";
-                    tagText = isExpired ? "Expirado" : `Monetizado (${post.tier})`;
-                }
-
-                const isOwner = (post.user === "@JorgeCalas");
-                const ownerActionsHTML = isOwner ? `
-                    <div class="owner-actions">
-                        <button onclick="editPost(${post.id})">Editar</button>
-                        <button onclick="deletePost(${post.id})">Borrar</button>
-                    </div>
-                ` : '';
-
-                const card = document.createElement('div');
-                card.className = 'post-card';
-                card.innerHTML = `
-                    <span class="post-tag ${tagClass}">${tagText}</span>
-                    <div class="post-header"><span>${post.user} • ${post.time}</span></div>
-                    <div class="post-content">${post.text}</div>
-                    ${mediaHTML}
-                    ${ownerActionsHTML}
-                    <div class="post-actions">
-                        <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
-                            <span class="icon">${post.liked ? '❤️' : '🤍'}</span> ${post.likes}
-                        </button>
-                        <button class="action-btn" onclick="toggleComments(${index})">
-                            <span class="icon">💬</span> ${post.comments.length}
-                        </button>
-                        <button class="action-btn report-btn" onclick="reportPost(${post.id})">
-                            ⚠️ Reportar
-                        </button>
-                    </div>
-                    <div class="comments-section" id="comments-${index}">
-                        ${commentsHTML}
-                        <div class="comment-input-row">
-                            <input type="text" id="comment-input-${index}" placeholder="Escribe un comentario...">
-                            <button onclick="addComment(${index})">Enviar</button>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function toggleLike(index) {
-            const post = posts[index];
-            const now = Date.now();
-            const isPostActive = post.monetized && (now <= post.expiresAt);
-
-            const lastLikedTime = interactedUsers[post.id] || 0;
-            const hoursSinceLastLike = (now - lastLikedTime) / (1000 * 60 * 60);
-
-            if (post.liked) {
-                post.likes--;
-                post.liked = false;
-                totalLikesToday = Math.max(0, totalLikesToday - 1);
-                points += 10;
-                delete interactedUsers[post.id];
-            } else {
-                if (hoursSinceLastLike < 24 && lastLikedTime !== 0) {
-                    showToast("⚠️ Ya le diste like a este post en las últimas 24 horas.");
-                    return;
-                }
-                if (points < 10) {
-                    showToast("⚠️ Saldo insuficiente (Requiere 10 Pts)");
-                    return;
-                }
-                if (totalLikesToday >= 40) {
-                    showToast("⚠️ Límite de 40 likes diarios alcanzado");
-                    return;
-                }
-                if (isPostActive && post.likes >= post.maxLikes) {
-                    showToast(`⚠️ Este post alcanzó su límite máximo de ${post.maxLikes} likes.`);
-                    return;
-                }
-
-                points -= 10;
-                totalLikesToday++;
-                post.likes++;
-                post.liked = true;
-                interactedUsers[post.id] = now;
-
-                if (isPostActive) {
-                    points += 10;
-                }
-            }
-            localStorage.setItem('cw_interacted', JSON.stringify(interactedUsers));
-            updateUI();
-            renderFeed();
-        }
-
-        function toggleComments(index) {
-            const section = document.getElementById(`comments-${index}`);
-            section.style.display = section.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function addComment(index) {
-            if (points < 10) {
-                showToast("⚠️ Saldo insuficiente para comentar");
-                return;
-            }
-            if (totalCommsToday >= 40) {
-                showToast("⚠️ Límite de 40 comentarios diarios alcanzado");
-                return;
-            }
-
-            const input = document.getElementById(`comment-input-${index}`);
-            const text = input.value.trim();
-            if (text !== "") {
-                points -= 10;
-                totalCommsToday++;
-                posts[index].comments.push(text);
-                
-                const now = Date.now();
-                if (posts[index].monetized && now <= posts[index].expiresAt) {
-                    points += 5;
-                }
-
-                updateUI();
-                renderFeed();
-                document.getElementById(`comments-${index}`).style.display = 'block';
-                input.value = '';
-            }
-        }
-
-        setInterval(() => {
-            checkTimersAndButtons();
-            checkDailyReset6PM();
-            renderMyMonetizedPosts();
-        }, 1000);
-
-        updateUI();
-        renderFeed();
     </script>
 </body>
-                </html>
+</html>
