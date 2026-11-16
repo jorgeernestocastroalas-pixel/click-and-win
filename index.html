@@ -14,10 +14,10 @@
         body {
             background-color: #121212;
             color: #e0e0e0;
-            padding-bottom: 75px;
-            padding-top: 50px;
+            padding-bottom: 80px;
+            padding-top: 55px;
         }
-        /* Header Sobrio y Profesional */
+        /* Header Sobrio */
         header {
             background-color: #181818;
             height: 50px;
@@ -26,16 +26,24 @@
             left: 0;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            padding: 0 15px;
             border-bottom: 1px solid #2a2a2a;
             z-index: 100;
         }
         header h1 {
             font-size: 15px;
             font-weight: 600;
-            letter-spacing: 0.5px;
             color: #fff;
+        }
+        .header-points {
+            font-size: 12px;
+            background: #222;
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: #2ecc71;
+            border: 1px solid #333;
         }
         
         .container {
@@ -44,7 +52,7 @@
             margin: 0 auto;
         }
 
-        /* Banner Superior 728x90 Proporcional para Móvil */
+        /* Banner Superior 728x90 Proporcional */
         .ad-container-top {
             background-color: #181818;
             border: 1px solid #2a2a2a;
@@ -67,76 +75,221 @@
             position: absolute;
         }
 
-        /* Secciones de la App */
+        /* Widget Scroll-to-Earn */
+        .scroll-tracker-box {
+            background-color: #181818;
+            border: 1px solid #2a2a2a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        .scroll-tracker-flex {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            color: #aaa;
+        }
+        .progress-bar-bg {
+            background: #222;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background: #2ecc71;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
         .view-section { display: none; }
         .view-section.active { display: block; }
 
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #777;
-            font-size: 13px;
-            background: #181818;
+        /* Tarjetas del Feed */
+        .post-card {
+            background-color: #181818;
             border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             border: 1px solid #2a2a2a;
-            margin-top: 15px;
+            position: relative;
+        }
+        .post-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .tag-monetized { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; }
+        .tag-normal { background-color: rgba(170, 170, 170, 0.1); color: #aaa; border: 1px solid #444; }
+
+        .post-header { font-size: 11px; color: #888; margin-bottom: 6px; }
+        .post-content { font-size: 13px; margin-bottom: 10px; line-height: 1.4; color: #ddd; }
+        .post-media {
+            width: 100%;
+            max-height: 260px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background: #000;
+        }
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #222;
+            padding-top: 10px;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .action-btn.liked { color: #e74c3c; font-weight: 600; }
+        .action-btn.tip-btn { color: #f1c40f; }
+
+        .owner-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 11px;
+        }
+        .owner-actions button {
+            background: #222;
+            color: #ccc;
+            border: 1px solid #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        /* Toast de Alertas Estilo Mate */
-        .toast {
-            position: fixed;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #1c1c1c;
+        /* Comentarios */
+        .comments-section {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #222;
+            display: none;
+        }
+        .comment-item {
+            background-color: #121212;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        .comment-input-row { display: flex; gap: 6px; margin-top: 8px; }
+        .comment-input-row input {
+            flex: 1;
+            background-color: #121212;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+        .comment-input-row button {
+            background-color: #252525;
             color: #fff;
             border: 1px solid #333;
-            padding: 10px 18px;
+            padding: 6px 10px;
             border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            z-index: 4000;
-            display: none;
-            text-align: center;
-            max-width: 90%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            font-size: 11px;
+            cursor: pointer;
         }
 
-        /* Barra de Navegación Inferior Profesional (Iconos de Trazo) */
-        nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+        /* Bloque Anuncio Feed (300x250) */
+        .ad-card-feed {
             background-color: #181818;
-            border-top: 1px solid #2a2a2a;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Modales Dark Matte */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: #181818;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .modal-btn {
+            background: #2ecc71; color: #121212; border: none;
+            padding: 10px; border-radius: 6px; font-weight: 600;
+            width: 100%; cursor: pointer; margin-top: 10px; font-size: 12px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 60px; left: 50%; transform: translateX(-50%);
+            background-color: #1c1c1c; color: #fff; border: 1px solid #333;
+            padding: 8px 16px; border-radius: 6px;
+            font-size: 11px; font-weight: 500; z-index: 4000;
+            display: none; text-align: center; max-width: 90%;
+        }
+
+        /* Perfil Estilo Matte */
+        .profile-card {
+            background-color: #181818;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .profile-tier {
+            display: inline-block; background-color: #333; color: #2ecc71;
+            padding: 3px 10px; border-radius: 12px; font-size: 11px;
+            font-weight: 600; border: 1px solid #2ecc71; margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .activate-btn {
+            background-color: #2ecc71; color: #121212; border: none;
+            padding: 10px; border-radius: 6px; font-weight: 600;
+            font-size: 12px; cursor: pointer; width: 100%; margin-top: 10px;
+        }
+
+        /* Navegación Inferior */
+        nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: #181818; border-top: 1px solid #2a2a2a;
+            display: flex; justify-content: space-around; padding: 8px 0;
             z-index: 1000;
         }
         .nav-item {
-            background: none;
-            border: none;
-            color: #666;
-            font-size: 10px;
-            text-align: center;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            flex: 1;
+            background: none; border: none; color: #666;
+            font-size: 10px; text-align: center; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1;
         }
         .nav-item.active { color: #2ecc71; }
         .nav-item svg {
-            width: 22px;
-            height: 22px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            width: 20px; height: 20px; stroke: currentColor; fill: none;
+            stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
         }
     </style>
 </head>
@@ -144,9 +297,31 @@
 
     <header>
         <h1>Click & Win</h1>
+        <div class="header-points" id="headerPoints">💎 150 Pts</div>
     </header>
 
-    <div class="toast" id="toastMsg">Aviso del sistema</div>
+    <div class="toast" id="toastMsg">Aviso</div>
+
+    <!-- Modal para Tips (Centavitos) -->
+    <div class="modal-overlay" id="tipModal">
+        <div class="modal-content">
+            <h3 style="font-size: 14px; color: #f1c40f; margin-bottom: 10px;">🎁 Enviar Tip al Autor</h3>
+            <p style="font-size: 11px; color: #aaa; margin-bottom: 15px;">Apoya el contenido con micro-propinas:</p>
+            <button class="modal-btn" style="background:#222; color:#fff; border:1px solid #444; margin-bottom:8px;" onclick="sendTip(100)">🪙 100 Pts ($0.01 USD)</button>
+            <button class="modal-btn" style="background:#222; color:#fff; border:1px solid #444; margin-bottom:8px;" onclick="sendTip(200)">🪙 200 Pts ($0.02 USD)</button>
+            <button class="modal-btn" style="background:#222; color:#fff; border:1px solid #444; margin-bottom:12px;" onclick="sendTip(300)">🪙 300 Pts ($0.03 USD)</button>
+            <button class="modal-btn" style="background:#333; color:#aaa;" onclick="closeTipModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal Anuncio Adsterra 15s (Activación) -->
+    <div class="modal-overlay" id="adModal">
+        <div class="modal-content">
+            <div id="modalTimerText" style="font-size: 12px; color: #e74c3c; font-weight: 600; margin-bottom: 10px;">Espera 15s</div>
+            <div style="font-size: 11px; color: #aaa; margin-bottom: 10px;">Visualizando anuncio publicitario...</div>
+            <button class="modal-btn" id="closeAdBtn" style="display:none;" onclick="finishAdActivation()">Continuar</button>
+        </div>
+    </div>
 
     <div class="container">
         <!-- Banner Superior Adsterra 728x90 -->
@@ -163,58 +338,69 @@
             <script src="https://bicea.org/22/94a60368d80726e04cbdceea35d7410e"></script>
         </div>
 
-        <!-- SECCIÓN 1: HOME / FEED (Vacío inicialmente) -->
+        <!-- SECCIÓN 1: HOME / FEED -->
         <div id="section-home" class="view-section active">
-            <div class="empty-state">
-                No hay publicaciones en el feed todavía.
+            <!-- Widget Scroll-to-Earn -->
+            <div class="scroll-tracker-box">
+                <div class="scroll-tracker-flex">
+                    <span>⚡ Scroll-to-Earn (Comisiones)</span>
+                    <span id="scrollCountText">0 / 20 Vistas</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="scrollBarFill"></div>
+                </div>
             </div>
+
+            <div id="feedContainer"></div>
         </div>
 
-        <!-- SECCIÓN 2: VIDEOS / REELS -->
+        <!-- SECCIÓN 2: VIDEOS -->
         <div id="section-videos" class="view-section">
-            <div class="empty-state">
-                Sección de videos y reels en desarrollo.
+            <div style="text-align:center; padding:30px; color:#777; font-size:12px; background:#181818; border-radius:8px;">
+                Módulo de Videos y Reels en sincronización.
             </div>
         </div>
 
         <!-- SECCIÓN 3: GANANCIAS -->
         <div id="section-ganancias" class="view-section">
-            <div class="empty-state">
-                Panel de ganancias y conversión.
+            <div class="profile-card" style="text-align:left;">
+                <h3 style="font-size:14px; color:#2ecc71; margin-bottom:8px;">💲 Tus Ganancias</h3>
+                <div style="font-size:13px; margin-bottom:4px;">Saldo: <b id="walletPoints">150 Pts</b></div>
+                <div style="font-size:12px; color:#aaa;">Equivalente: <b id="walletUsd">$0.015 USD</b></div>
+                <hr style="border:0; border-top:1px solid #222; margin:10px 0;">
+                <div style="font-size:11px; color:#e74c3c;" id="commissionStatus">⚠️ Comisiones bloqueadas: Completa el Scroll de 20 posts en Home.</div>
             </div>
         </div>
 
         <!-- SECCIÓN 4: PERFIL -->
         <div id="section-perfil" class="view-section">
-            <div class="empty-state">
-                Perfil de usuario y configuración de niveles.
+            <div class="profile-card">
+                <div class="profile-tier" id="profileTierBadge">Starter</div>
+                <h2 style="font-size:16px; margin-bottom:4px;">@JorgeCalas</h2>
+                <p style="font-size:11px; color:#aaa; margin-bottom:10px;">Límite diario: 20 likes por post (100 total / 5 días)</p>
+                <button class="activate-btn" onclick="startActivationFlow()">Activar Cupo Monetizable</button>
             </div>
         </div>
     </div>
 
-    <!-- Barra de Navegación Inferior -->
+    <!-- Navegación Inferior -->
     <nav>
-        <!-- Home -->
         <button class="nav-item active" onclick="switchTab('home', this)">
             <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             Home
         </button>
-        <!-- Videos -->
         <button class="nav-item" onclick="switchTab('videos', this)">
             <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
             Videos
         </button>
-        <!-- Publicar (Acción) -->
         <button class="nav-item" onclick="handlePublishClick()">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
             Publicar
         </button>
-        <!-- Ganancias -->
         <button class="nav-item" onclick="switchTab('ganancias', this)">
             <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
             Ganancias
         </button>
-        <!-- Perfil -->
         <button class="nav-item" onclick="switchTab('perfil', this)">
             <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             Perfil
@@ -222,7 +408,73 @@
     </nav>
 
     <script>
-        // Función limpia de navegación entre pestañas
+        // --- ESTADOS Y LOCALSTORAGE ---
+        let points = parseInt(localStorage.getItem('cw_points')) || 150;
+        let scrolledCount = parseInt(localStorage.getItem('cw_scrolled')) || 0;
+        let commissionsUnlocked = localStorage.getItem('cw_unlocked') === 'true';
+        let lastResetDate = localStorage.getItem('cw_last_reset') || "";
+
+        // Motor de Tiempos: Corte Global Diario a las 6:00 PM
+        function checkDailyReset6PM() {
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            const resetTime = new Date();
+            resetTime.setHours(18, 0, 0, 0);
+
+            if (lastResetDate !== todayStr && now >= resetTime) {
+                scrolledCount = 0;
+                commissionsUnlocked = false;
+                lastResetDate = todayStr;
+                localStorage.setItem('cw_last_reset', todayStr);
+                localStorage.setItem('cw_scrolled', 0);
+                localStorage.setItem('cw_unlocked', 'false');
+            }
+        }
+        checkDailyReset6PM();
+
+        // 4 Publicaciones de Prueba Iniciales (Para ver el diseño y el banner cada 4 posts)
+        let samplePosts = JSON.parse(localStorage.getItem('cw_posts')) || [
+            { id: 1, user: "@JorgeCalas", time: "Hace 10 min", text: "Primera publicación de prueba para verificar el feed y la distribución.", media: "", likes: 12, liked: false, comments: ["¡Excelente!"], monetized: true, tier: "Starter", maxDailyLikes: 20, expiresAt: Date.now() + (5*24*60*60*1000) },
+            { id: 2, user: "@ComercialJuan", time: "Hace 30 min", text: "Promociones especiales de temporada disponibles en nuestra tienda.", media: "", likes: 8, liked: false, comments: [], monetized: true, tier: "Starter", maxDailyLikes: 20, expiresAt: Date.now() + (5*24*60*60*1000) },
+            { id: 3, user: "@OcotepequeTours", time: "Hace 1 hora", text: "Descubre los mejores destinos turísticos de la región fronteriza.", media: "", likes: 15, liked: false, comments: ["Hermoso lugar"], monetized: true, tier: "Starter", maxDailyLikes: 20, expiresAt: Date.now() + (5*24*60*60*1000) },
+            { id: 4, user: "@MilatoDelivery", time: "Hace 2 horas", text: "Servicio rápido y seguro de entregas a domicilio en todo Sinuapa y Ocotepeque.", media: "", likes: 5, liked: false, comments: [], monetized: true, tier: "Starter", maxDailyLikes: 20, expiresAt: Date.now() + (5*24*60*60*1000) }
+        ];
+
+        let activeTipPostId = null;
+
+        function updateUI() {
+            checkDailyReset6PM();
+            document.getElementById('headerPoints').innerText = `💎 ${points} Pts`;
+            document.getElementById('walletPoints').innerText = `${points} Pts`;
+            document.getElementById('walletUsd').innerText = `$${(points / 10000).toFixed(3)} USD`;
+            
+            const scrollPercent = Math.min(100, (scrolledCount / 20) * 100);
+            document.getElementById('scrollCountText').innerText = `${scrolledCount} / 20 Vistas`;
+            document.getElementById('scrollBarFill').style.width = `${scrollPercent}%`;
+
+            const commStatus = document.getElementById('commissionStatus');
+            if (scrolledCount >= 20 || commissionsUnlocked) {
+                commissionsUnlocked = true;
+                localStorage.setItem('cw_unlocked', 'true');
+                commStatus.innerHTML = "✅ Comisiones de referidos desbloqueadas para hoy.";
+                commStatus.style.color = "#2ecc71";
+            } else {
+                commStatus.innerHTML = `⚠️ Comisiones bloqueadas: Has visto ${scrolledCount}/20 posts necesarios.`;
+                commStatus.style.color = "#e74c3c";
+            }
+
+            localStorage.setItem('cw_points', points);
+            localStorage.setItem('cw_scrolled', scrolledCount);
+            localStorage.setItem('cw_posts', JSON.stringify(samplePosts));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
         function switchTab(tabName, btnElement) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('nav .nav-item').forEach(btn => btn.classList.remove('active'));
@@ -230,21 +482,191 @@
             document.getElementById(`section-${tabName}`).classList.add('active');
             if (btnElement) btnElement.classList.add('active');
             window.scrollTo(0, 0);
+            if (tabName === 'home') renderFeed();
         }
 
-        // Lógica solicitada para el botón Publicar
         function handlePublishClick() {
-            // Aquí validaremos después si hay activación pendiente. Por ahora cumple la regla exacta:
             showToast("Tienes tres publicaciones monetizables, ve al perfil y actívalas.");
+            switchTab('perfil', document.querySelectorAll('nav .nav-item')[4]);
         }
 
-        // Sistema de notificaciones Toast profesional
-        function showToast(msg) {
-            const toast = document.getElementById('toastMsg');
-            toast.innerText = msg;
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        // Renderizado del Feed con inyección de Banner Adsterra 300x250 cada 4 posts
+        function renderFeed() {
+            const container = document.getElementById('feedContainer');
+            container.innerHTML = '';
+            const now = Date.now();
+
+            samplePosts.forEach((post, index) => {
+                // Inyectar banner cada 4 publicaciones
+                if (index > 0 && index % 4 === 0) {
+                    const adCard = document.createElement('div');
+                    adCard.className = 'ad-card-feed';
+                    adCard.innerHTML = `
+                        <script>
+                          atOptions = {
+                            'key' : '4dfb9a5937a21eac92dacd7d5199d46c',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                          };
+                        </script>
+                        <script src="https://bicea.org/22/4dfb9a5937a21eac92dacd7d5199d46c"></script>
+                    `;
+                    container.appendChild(adCard);
+                }
+
+                let isExpired = post.monetized && (now > post.expiresAt);
+                const commentsHTML = post.comments.map(c => `<div class="comment-item">💬 ${c}</div>`).join('');
+                const mediaHTML = post.media ? `<img src="${post.media}" class="post-media">` : '';
+                
+                let tagClass = isExpired ? "tag-normal" : "tag-monetized";
+                let tagText = isExpired ? "Expirado" : `Monetizado (${post.tier})`;
+
+                const isOwner = (post.user === "@JorgeCalas");
+                const ownerActionsHTML = isOwner ? `
+                    <div class="owner-actions">
+                        <button onclick="deletePost(${post.id})">Borrar</button>
+                    </div>
+                ` : '';
+
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.innerHTML = `
+                    <span class="post-tag ${tagClass}">${tagText}</span>
+                    <div class="post-header">${post.user} • ${post.time}</div>
+                    <div class="post-content">${post.text}</div>
+                    ${mediaHTML}
+                    ${ownerActionsHTML}
+                    <div class="post-actions">
+                        <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
+                            ❤️ ${post.likes}
+                        </button>
+                        <button class="action-btn" onclick="toggleComments(${index})">
+                            💬 ${post.comments.length}
+                        </button>
+                        <button class="action-btn tip-btn" onclick="openTipModal(${post.id})">
+                            🪙 Tip
+                        </button>
+                        <button class="action-btn" onclick="sharePost()">
+                            🔗 Compartir
+                        </button>
+                    </div>
+                    <div class="comments-section" id="comments-${index}">
+                        ${commentsHTML}
+                        <div class="comment-input-row">
+                            <input type="text" id="comment-input-${index}" placeholder="Escribe un comentario...">
+                            <button onclick="addComment(${index})">Enviar</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Simular progreso de Scroll-to-Earn al interactuar en el feed
+            if (scrolledCount < 20) {
+                scrolledCount = Math.min(20, scrolledCount + 1);
+                updateUI();
+            }
         }
+
+        function toggleLike(index) {
+            const post = samplePosts[index];
+            if (post.liked) {
+                post.likes--;
+                post.liked = false;
+                points += 5; // Reembolso
+            } else {
+                // Verificar límite diario fraccionado (Starter = máx 20 likes diarios)
+                if (post.likes >= post.maxDailyLikes) {
+                    showToast("⚠️ Este post alcanzó su límite máximo de likes permitidos para hoy.");
+                    return;
+                }
+                post.likes++;
+                post.liked = true;
+                points += 5; // Incentivo mutuo para quien da like
+            }
+            updateUI();
+            renderFeed();
+        }
+
+        function toggleComments(index) {
+            const sec = document.getElementById(`comments-${index}`);
+            sec.style.display = sec.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function addComment(index) {
+            const input = document.getElementById(`comment-input-${index}`);
+            const text = input.value.trim();
+            if (text) {
+                samplePosts[index].comments.push(text);
+                points += 5; // Incentivo por comentar
+                input.value = '';
+                updateUI();
+                renderFeed();
+                document.getElementById(`comments-${index}`).style.display = 'block';
+            }
+        }
+
+        function deletePost(id) {
+            samplePosts = samplePosts.filter(p => p.id !== id);
+            updateUI();
+            renderFeed();
+            showToast("🗑️ Publicación eliminada.");
+        }
+
+        function sharePost() {
+            showToast("🔗 Enlace copiado con tu código de referido.");
+        }
+
+        // Lógica del Botón de Tip (Centavitos)
+        function openTipModal(postId) {
+            activeTipPostId = postId;
+            document.getElementById('tipModal').style.display = 'flex';
+        }
+        function closeTipModal() {
+            document.getElementById('tipModal').style.display = 'none';
+            activeTipPostId = null;
+        }
+        function sendTip(amount) {
+            if (points < amount) {
+                showToast("⚠️ Saldo insuficiente para enviar este Tip.");
+                closeTipModal();
+                return;
+            }
+            points -= amount;
+            updateUI();
+            closeTipModal();
+            showToast(`🪙 ¡Tip de ${amount} Pts enviado con éxito!`);
+        }
+
+        // Flujo de Anuncio de Activación (Perfil)
+        function startActivationFlow() {
+            document.getElementById('adModal').style.display = 'flex';
+            let timer = 15;
+            const timerTxt = document.getElementById('modalTimerText');
+            const btn = document.getElementById('closeAdBtn');
+            btn.style.display = 'none';
+            
+            const interval = setInterval(() => {
+                timer--;
+                if (timer > 0) {
+                    timerTxt.innerText = `Espera ${timer}s`;
+                } else {
+                    clearInterval(interval);
+                    timerTxt.innerText = "¡Anuncio finalizado!";
+                    btn.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        function finishAdActivation() {
+            document.getElementById('adModal').style.display = 'none';
+            showToast("✨ ¡Cupo monetizable activado! Ya puedes publicar.");
+        }
+
+        updateUI();
+        renderFeed();
     </script>
 </body>
-</html>
+            </html>
