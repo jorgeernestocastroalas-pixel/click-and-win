@@ -13,16 +13,16 @@
         }
         body {
             background-color: #121212;
-            color: #ffffff;
+            color: #e0e0e0;
             padding-bottom: 75px;
         }
         header {
-            background-color: #1e1e1e;
+            background-color: #181818;
             padding: 12px 15px;
             text-align: center;
             font-size: 16px;
-            font-weight: bold;
-            border-bottom: 1px solid #333;
+            font-weight: 600;
+            border-bottom: 1px solid #2a2a2a;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -31,65 +31,90 @@
             align-items: center;
         }
         .points-badge {
-            background-color: #2a2a2a;
-            color: #4cd137;
-            padding: 4px 10px;
+            background-color: #222;
+            color: #2ecc71;
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 13px;
-            border: 1px solid #4cd137;
+            border: 1px solid #2ecc71;
+            font-weight: 500;
         }
         .container {
             padding: 15px;
             max-width: 600px;
             margin: 0 auto;
         }
-        /* Contenedor responsivo para Banner 728x90 */
+        
+        /* Banner 728x90 Responsivo para móvil */
         .ad-container-top {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            padding: 5px;
+            background-color: #181818;
+            border: 1px solid #2a2a2a;
+            padding: 8px;
             text-align: center;
             margin-bottom: 15px;
             border-radius: 8px;
             overflow: hidden;
             display: flex;
             justify-content: center;
+            width: 100%;
         }
-        /* Panel de Contadores de Acciones */
-        .counters-panel {
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            padding: 10px 15px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            display: flex;
-            justify-content: space-around;
-            font-size: 13px;
-            font-weight: bold;
-            color: #aaa;
+        .ad-container-top iframe {
+            max-width: 100%;
         }
-        .counter-item span { color: #fff; }
-        
+
         .view-section { display: none; }
         .view-section.active { display: block; }
         
-        /* Perfil y Niveles */
+        /* Perfil Estilo Matte */
+        .profile-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .profile-sidebar {
+            background-color: #181818;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #2a2a2a;
+        }
+        .profile-sidebar h4 {
+            font-size: 14px;
+            color: #2ecc71;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 5px;
+        }
+        .menu-btn {
+            background: #222;
+            color: #ddd;
+            border: 1px solid #333;
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+        .menu-btn:hover { background: #2a2a2a; color: #fff; }
+
         .profile-card {
-            background-color: #1e1e1e;
+            background-color: #181818;
             border-radius: 10px;
             padding: 20px;
-            border: 1px solid #333;
+            border: 1px solid #2a2a2a;
             text-align: center;
-            margin-bottom: 15px;
         }
         .profile-tier {
             display: inline-block;
-            background-color: #ff4757;
-            color: #fff;
+            background-color: #333;
+            color: #2ecc71;
             padding: 4px 12px;
             border-radius: 15px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 600;
+            border: 1px solid #2ecc71;
             text-transform: uppercase;
             margin-bottom: 10px;
         }
@@ -97,7 +122,7 @@
             display: flex;
             justify-content: space-around;
             margin: 15px 0;
-            font-size: 14px;
+            font-size: 13px;
         }
         .stat-box {
             background: #121212;
@@ -105,76 +130,101 @@
             border-radius: 8px;
             flex: 1;
             margin: 0 5px;
-            border: 1px solid #2a2a2a;
+            border: 1px solid #222;
         }
-        .stat-box b { display: block; color: #4cd137; font-size: 16px; margin-top: 4px; }
-        
+        .stat-box b { display: block; color: #2ecc71; font-size: 15px; margin-top: 4px; }
+
+        /* Barras de Energía en Perfil */
+        .energy-bars-container {
+            background: #121212;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #222;
+            text-align: left;
+        }
+        .energy-title { font-size: 12px; color: #aaa; margin-bottom: 6px; display: flex; justify-content: space-between; }
+        .progress-bar-bg {
+            background: #222;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar-fill {
+            background: #2ecc71;
+            height: 100%;
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+        .progress-bar-fill.comment { background: #3498db; }
+
         .activate-btn {
-            background-color: #4cd137;
-            color: #000;
+            background-color: #2ecc71;
+            color: #121212;
             border: none;
             padding: 12px;
             border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
             width: 100%;
             margin-top: 10px;
         }
-        .activate-btn:disabled { background-color: #333; color: #778; cursor: not-allowed; }
+        .activate-btn:disabled { background-color: #262626; color: #666; cursor: not-allowed; border: 1px solid #333; }
 
         /* Formulario de Publicación */
         .new-post-box {
-            background-color: #1e1e1e;
+            background-color: #181818;
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 15px;
-            border: 1px solid #333;
+            border: 1px solid #2a2a2a;
             display: none;
         }
-        .new-post-box h3 { font-size: 15px; margin-bottom: 10px; color: #4cd137; }
-        .new-post-box input, .new-post-box textarea {
+        .new-post-box h3 { font-size: 14px; margin-bottom: 10px; color: #2ecc71; font-weight: 600; }
+        .new-post-box textarea {
             width: 100%;
             background-color: #121212;
             color: #fff;
-            border: 1px solid #444;
+            border: 1px solid #333;
             border-radius: 6px;
             padding: 10px;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 10px;
+            resize: none;
         }
-        .new-post-box textarea { resize: none; }
         .file-input-label {
             display: block;
-            background-color: #2a2a2a;
-            border: 1px dashed #555;
+            background-color: #222;
+            border: 1px dashed #444;
             padding: 10px;
             text-align: center;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             color: #aaa;
             margin-bottom: 10px;
             cursor: pointer;
         }
         .publish-btn {
-            background-color: #4cd137;
-            color: #000;
+            background-color: #2ecc71;
+            color: #121212;
             border: none;
             padding: 10px;
             border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
             width: 100%;
         }
 
         /* Tarjetas del Feed */
         .post-card {
-            background-color: #1e1e1e;
+            background-color: #181818;
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 15px;
-            border: 1px solid #333;
+            border: 1px solid #2a2a2a;
             position: relative;
         }
         .post-tag {
@@ -184,78 +234,107 @@
             font-size: 11px;
             padding: 2px 8px;
             border-radius: 4px;
-            font-weight: bold;
+            font-weight: 500;
         }
-        .tag-monetized { background-color: rgba(76, 209, 55, 0.2); color: #4cd137; border: 1px solid #4cd137; }
-        .tag-normal { background-color: rgba(170, 170, 170, 0.2); color: #aaa; border: 1px solid #555; }
+        .tag-monetized { background-color: rgba(46, 204, 113, 0.15); color: #2ecc71; border: 1px solid #2ecc71; }
+        .tag-normal { background-color: rgba(170, 170, 170, 0.1); color: #aaa; border: 1px solid #444; }
 
-        .post-header { font-size: 13px; color: #888; margin-bottom: 10px; }
-        .post-content { font-size: 15px; margin-bottom: 10px; line-height: 1.4; }
+        .post-header { font-size: 12px; color: #888; margin-bottom: 4px; }
+        .post-sub-meta { font-size: 11px; color: #2ecc71; margin-bottom: 10px; }
+        .post-content { font-size: 14px; margin-bottom: 10px; line-height: 1.4; color: #ddd; }
         .post-media {
             width: 100%;
-            max-height: 300px;
+            max-height: 280px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-bottom: 10px;
         }
         .post-actions {
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid #2a2a2a;
+            border-top: 1px solid #222;
             padding-top: 10px;
         }
         .action-btn {
             background: none;
             border: none;
-            color: #aaa;
-            font-size: 14px;
+            color: #999;
+            font-size: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
-        .action-btn.liked { color: #ff4757; font-weight: bold; }
+        .action-btn.liked { color: #e74c3c; font-weight: 600; }
+        .action-btn.report-btn { color: #e67e22; font-size: 11px; }
+
+        /* Opciones de Dueño (Editar/Borrar) */
+        .owner-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+        .owner-actions button {
+            background: #222;
+            color: #ccc;
+            border: 1px solid #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
         /* Comentarios */
         .comments-section {
-            margin-top: 12px;
-            padding-top: 10px;
-            border-top: 1px solid #2a2a2a;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #222;
             display: none;
         }
         .comment-item {
-            background-color: #151515;
-            padding: 8px 10px;
+            background-color: #121212;
+            padding: 6px 10px;
             border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 6px;
-            color: #ddd;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #ccc;
         }
         .comment-input-row { display: flex; gap: 6px; margin-top: 8px; }
         .comment-input-row input {
             flex: 1;
             background-color: #121212;
-            border: 1px solid #444;
+            border: 1px solid #333;
             color: #fff;
             padding: 6px 10px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
         }
         .comment-input-row button {
-            background-color: #333;
+            background-color: #252525;
             color: #fff;
-            border: none;
-            padding: 6px 12px;
+            border: 1px solid #333;
+            padding: 6px 10px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
         }
 
-        /* Ventana Modal Publicitaria (Adsterra 300x250) */
+        /* Bloque de Anuncio dinámico en Feed (300x250) */
+        .ad-card-feed {
+            background-color: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Ventana Modal Publicitaria (Adsterra 15s) */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0,0,0,0.8);
             display: none;
             justify-content: center;
             align-items: center;
@@ -263,55 +342,54 @@
             padding: 20px;
         }
         .modal-content {
-            background-color: #1e1e1e;
+            background-color: #181818;
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 10px;
             width: 100%;
-            max-width: 340px;
+            max-width: 330px;
             text-align: center;
-            border: 1px solid #444;
+            border: 1px solid #333;
             position: relative;
         }
         .modal-timer {
-            font-size: 14px;
-            color: #ff4757;
-            font-weight: bold;
-            margin-bottom: 12px;
+            font-size: 13px;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
         .close-modal-btn {
             position: absolute;
-            top: 10px; right: 10px;
-            background: #333; color: #fff;
-            border: none; width: 28px; height: 28px;
-            border-radius: 50%; font-weight: bold; cursor: pointer;
+            top: 8px; right: 8px;
+            background: #252525; color: #fff;
+            border: 1px solid #444; width: 26px; height: 26px;
+            border-radius: 50%; font-weight: 600; cursor: pointer;
             display: none;
         }
 
         /* Toast de avisos */
         .toast {
             position: fixed;
-            top: 65px; left: 50%; transform: translateX(-50%);
-            background-color: #ff4757; color: #fff;
-            padding: 8px 18px; border-radius: 20px;
-            font-size: 13px; font-weight: bold; z-index: 4000;
-            display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            text-align: center; max-width: 90%;
+            top: 60px; left: 50%; transform: translateX(-50%);
+            background-color: #222; color: #fff; border: 1px solid #444;
+            padding: 8px 16px; border-radius: 20px;
+            font-size: 12px; font-weight: 500; z-index: 4000;
+            display: none; text-align: center; max-width: 90%;
         }
 
         /* Barra Inferior */
         nav {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background-color: #1a1a1a; border-top: 1px solid #333;
+            background-color: #181818; border-top: 1px solid #2a2a2a;
             display: flex; justify-content: space-around; padding: 10px 0;
             z-index: 1000;
         }
         .nav-item {
-            background: none; border: none; color: #888;
+            background: none; border: none; color: #777;
             font-size: 11px; text-align: center; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
         }
-        .nav-item.active { color: #4cd137; }
-        .nav-item span.icon { font-size: 20px; }
+        .nav-item.active { color: #2ecc71; }
+        .nav-item span.icon { font-size: 18px; }
     </style>
 </head>
 <body>
@@ -345,7 +423,7 @@
     </div>
 
     <div class="container">
-        <!-- Banner Superior Adsterra 728x90 -->
+        <!-- Banner Superior Adsterra 728x90 (Responsivo) -->
         <div class="ad-container-top">
             <script>
               atOptions = {
@@ -361,52 +439,87 @@
 
         <!-- SECCIÓN 1: HOME / FEED -->
         <div id="section-home" class="view-section active">
-            <div class="counters-panel">
-                <div>❤️ Likes: <span id="likesCount">0</span>/40</div>
-                <div>💬 Comentarios: <span id="commentsCount">0</span>/40</div>
-            </div>
-
             <!-- Formulario de Publicación -->
             <div class="new-post-box" id="newPostBox">
                 <h3>📢 Nueva Publicación</h3>
-                <input type="text" id="postTitle" placeholder="Tu Usuario o Negocio (Ej: @Anunciante)">
-                <textarea id="postInput" rows="3" placeholder="Escribe el texto de tu anuncio o publicación..."></textarea>
-                <label class="file-input-label" for="mediaFile">📁 Seleccionar Imagen o Video de la Galería</label>
+                <textarea id="postInput" rows="3" placeholder="Escribe el texto de tu publicación o anuncio..."></textarea>
+                <label class="file-input-label" for="mediaFile">📁 Seleccionar Imagen o Video</label>
                 <input type="file" id="mediaFile" accept="image/*,video/*" style="display:none;" onchange="previewMedia(this)">
-                <div id="mediaFileName" style="font-size:12px; color:#4cd137; margin-bottom:8px;"></div>
+                <div id="mediaFileName" style="font-size:11px; color:#2ecc71; margin-bottom:6px;"></div>
                 <button class="publish-btn" onclick="executePublish()">Confirmar Publicación</button>
             </div>
 
             <div id="feedContainer"></div>
         </div>
 
-        <!-- SECCIÓN 2: PERFIL Y NIVELES (4 NIVELES) -->
+        <!-- SECCIÓN 2: PERFIL Y NIVELES (Con Botonera Izquierda y Guía de Monetización) -->
         <div id="section-perfil" class="view-section">
-            <div class="profile-card">
-                <div class="profile-tier" id="userTierBadge">Starter</div>
-                <h2 id="userNameDisplay">@JorgeCalas</h2>
-                <div class="profile-stats">
-                    <div class="stat-box">Referidos <b id="refCount">0</b></div>
-                    <div class="stat-box">Cupos Hoy <b id="dailyQuotaDisplay">0 / 3</b></div>
+            <div class="profile-layout">
+                <!-- Botonera e información a la izquierda -->
+                <div class="profile-sidebar">
+                    <h4>🛠️ Panel de Control</h4>
+                    <button class="menu-btn" onclick="scrollToMonetizeGuide()">💡 Cómo Monetizar</button>
+                    <button class="menu-btn" onclick="switchTab('ganancias')">💲 Ver Ganancias</button>
                 </div>
-                <p id="tierInfoText" style="font-size:12px; color:#aaa; margin-bottom:15px; line-height: 1.4;">
-                    Nivel Starter: Límite de 100 likes por post.
-                </p>
-                <button class="activate-btn" id="activateQuotaBtn" onclick="startActivationFlow()">Activar Publicación Monetizable (0/3)</button>
-                <div id="timerCooldownBox" style="font-size:13px; color:#ff4757; margin-top:10px; font-weight:bold;"></div>
+
+                <!-- Tarjeta Principal del Perfil -->
+                <div class="profile-card">
+                    <div class="profile-tier" id="userTierBadge">Starter</div>
+                    <h2 id="userNameDisplay" style="font-size:18px; margin-bottom:5px;">@JorgeCalas</h2>
+                    <div class="profile-stats">
+                        <div class="stat-box">Referidos <b id="refCount">0</b></div>
+                        <div class="stat-box">Cupos Hoy <b id="dailyQuotaDisplay">0 / 3</b></div>
+                    </div>
+                    <p id="tierInfoText" style="font-size:11px; color:#aaa; margin-bottom:10px; line-height: 1.4;">
+                        Nivel Starter: Límite de 100 likes por post.
+                    </p>
+                    
+                    <!-- Barras de Energía Diarias -->
+                    <div class="energy-bars-container">
+                        <div class="energy-title">
+                            <span>❤️ Likes Disponibles Hoy</span>
+                            <span id="likesTextEnergy">40 / 40</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="likesBarFill" style="width: 100%;"></div>
+                        </div>
+
+                        <div class="energy-title">
+                            <span>💬 Comentarios Disponibles Hoy</span>
+                            <span id="commsTextEnergy">40 / 40</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill comment" id="commsBarFill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <button class="activate-btn" id="activateQuotaBtn" onclick="startActivationFlow()">Activar Publicación Monetizable (0/3)</button>
+                    <div id="timerCooldownBox" style="font-size:12px; color:#e74c3c; margin-top:8px; font-weight:600;"></div>
+                </div>
+
+                <!-- Guía explicativa "Cómo Monetizar" -->
+                <div class="profile-sidebar" id="monetizeGuideBox">
+                    <h4>📘 Guía: Cómo Monetizar</h4>
+                    <p style="font-size:12px; color:#bbb; line-height: 1.5; margin-top: 6px;">
+                        Subes tu contenido, tienes 3 contenidos diarios para monetizar siguiendo la siguiente estrategia:<br><br>
+                        1. Presionas el botón que dice activar publicación.<br>
+                        2. Ves el anuncio publicitario durante 15 segundos.<br>
+                        3. Al finalizar, tu próxima publicación quedará monetizada automáticamente y lista para generar puntos mediante interacciones reales.
+                    </p>
+                </div>
             </div>
         </div>
 
         <!-- SECCIÓN 3: GANANCIAS / CONVERSIÓN -->
         <div id="section-ganancias" class="view-section">
             <div class="profile-card" style="text-align: left;">
-                <h3>💲 Panel de Ganancias</h3>
-                <p style="font-size:13px; color:#aaa; margin-top:8px;">Tus puntos se acumulan automáticamente por la interacción real en tus publicaciones monetizadas activas (Vigencia de 5 días por ID).</p>
-                <hr style="border:0; border-top:1px solid #333; margin:15px 0;">
-                <div style="font-size:15px; margin-bottom:8px;">💎 Saldo Actual: <b id="gananciasPoints" style="color:#4cd137;">100 Pts</b></div>
-                <div style="font-size:14px; margin-bottom:8px;">💵 Equivalente USD: <b id="gananciasUsd" style="color:#fff;">$0.010 USD</b></div>
-                <hr style="border:0; border-top:1px solid #333; margin:15px 0;">
-                <p style="font-size:12px; color:#888;">• 10 Puntos = $0.001 USD<br>• 5 Puntos = $0.0005 USD<br>• 10,000 Puntos = $1.00 USD</p>
+                <h3 style="font-size:15px; color:#2ecc71; margin-bottom:8px;">💲 Panel de Ganancias</h3>
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Tus puntos se acumulan por la interacción real en tus publicaciones monetizadas activas (Vigencia de 5 días por ID).</p>
+                <hr style="border:0; border-top:1px solid #222; margin:12px 0;">
+                <div style="font-size:14px; margin-bottom:6px;">💎 Saldo Actual: <b id="gananciasPoints" style="color:#2ecc71;">100 Pts</b></div>
+                <div style="font-size:13px; margin-bottom:6px;">💵 Equivalente USD: <b id="gananciasUsd" style="color:#fff;">$0.010 USD</b></div>
+                <hr style="border:0; border-top:1px solid #222; margin:12px 0;">
+                <p style="font-size:11px; color:#888; line-height: 1.4;">• 10 Puntos = $0.001 USD<br>• 5 Puntos = $0.0005 USD<br>• 10,000 Puntos = $1.00 USD</p>
             </div>
         </div>
     </div>
@@ -422,15 +535,39 @@
     <script>
         // --- ESTADOS Y LOCALSTORAGE ---
         let points = parseInt(localStorage.getItem('cw_points')) || 100;
-        let totalLikes = parseInt(localStorage.getItem('cw_tlikes')) || 0;
-        let totalComments = parseInt(localStorage.getItem('cw_tcomms')) || 0;
+        let totalLikesToday = parseInt(localStorage.getItem('cw_tlikes')) || 0; // max 40
+        let totalCommsToday = parseInt(localStorage.getItem('cw_tcomms')) || 0; // max 40
         let referrals = parseInt(localStorage.getItem('cw_refs')) || 0;
         let dailyMonetizedCount = parseInt(localStorage.getItem('cw_dcount')) || 0; // 0 a 3
         let lastActionTime = parseInt(localStorage.getItem('cw_last_action')) || 0;
+        let lastResetDate = localStorage.getItem('cw_last_reset') || "";
+        
+        let interactedUsers = JSON.parse(localStorage.getItem('cw_interacted')) || {}; // {postId: timestamp}
         let pendingMonetizationActivation = false;
         let tempMediaData = "";
 
-        // Sistema de 4 Niveles por Referidos
+        // Verificador de Corte Diario a las 6:00 PM
+        function checkDailyReset6PM() {
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+            
+            // Definir las 6:00 PM (18:00) de hoy
+            const resetTimeToday = new Date();
+            resetTimeToday.setHours(18, 0, 0, 0);
+
+            if (lastResetDate !== todayStr && now >= resetTimeToday) {
+                totalLikesToday = 0;
+                totalCommsToday = 0;
+                interactedUsers = {}; // Limpiar restricciones de 24h
+                lastResetDate = todayStr;
+                localStorage.setItem('cw_last_reset', todayStr);
+                localStorage.setItem('cw_tlikes', 0);
+                localStorage.setItem('cw_tcomms', 0);
+                localStorage.setItem('cw_interacted', JSON.stringify({}));
+            }
+        }
+        checkDailyReset6PM();
+
         function getTierData() {
             if (referrals >= 100) return { name: "Pro", maxLikes: 1000 };
             if (referrals >= 50) return { name: "Máster", maxLikes: 500 };
@@ -441,13 +578,13 @@
         const defaultPosts = [
             {
                 id: 1,
-                user: "@DirectorioLocal",
+                user: "@JorgeCalas",
                 time: "Hace 1 hora",
-                text: "Bienvenidos a Click & Win. Explora las ofertas comerciales y apoya los negocios locales.",
+                text: "Bienvenidos a Click & Win. Apoya los negocios locales y monetiza tu contenido.",
                 media: "",
                 likes: 5,
                 liked: false,
-                comments: ["¡Excelente iniciativa!"],
+                comments: ["¡Excelente plataforma!"],
                 monetized: true,
                 tier: "Starter",
                 maxLikes: 100,
@@ -458,19 +595,25 @@
         let posts = JSON.parse(localStorage.getItem('cw_posts')) || defaultPosts;
 
         function updateUI() {
+            checkDailyReset6PM();
             document.getElementById('userPoints').innerText = `💎 ${points} Pts`;
-            document.getElementById('likesCount').innerText = totalLikes;
-            document.getElementById('commentsCount').innerText = totalComments;
             document.getElementById('refCount').innerText = referrals;
             document.getElementById('dailyQuotaDisplay').innerText = `${dailyMonetizedCount} / 3`;
             document.getElementById('gananciasPoints').innerText = `${points} Pts`;
             document.getElementById('gananciasUsd').innerText = `$${(points / 10000).toFixed(4)} USD`;
 
+            // Actualizar Barras de Energía en Perfil
+            const likesRemaining = Math.max(0, 40 - totalLikesToday);
+            const commsRemaining = Math.max(0, 40 - totalCommsToday);
+            document.getElementById('likesTextEnergy').innerText = `${likesRemaining} / 40`;
+            document.getElementById('likesBarFill').style.width = `${(likesRemaining / 40) * 100}%`;
+            document.getElementById('commsTextEnergy').innerText = `${commsRemaining} / 40`;
+            document.getElementById('commsBarFill').style.width = `${(commsRemaining / 40) * 100}%`;
+
             const tier = getTierData();
             document.getElementById('userTierBadge').innerText = tier.name;
             document.getElementById('userNameDisplay').innerText = "@JorgeCalas";
             
-            // Descripción detallada de los 4 niveles en el Perfil
             let tierDesc = `Nivel ${tier.name}: Límite de ${tier.maxLikes} likes por post. `;
             if (tier.name === "Starter") tierDesc += `(Faltan ${25 - referrals} referidos para Novato).`;
             else if (tier.name === "Novato") tierDesc += `(Faltan ${50 - referrals} referidos para Máster).`;
@@ -479,10 +622,9 @@
             
             document.getElementById('tierInfoText').innerText = tierDesc;
 
-            // Guardar en LocalStorage
             localStorage.setItem('cw_points', points);
-            localStorage.setItem('cw_tlikes', totalLikes);
-            localStorage.setItem('cw_tcomms', totalComments);
+            localStorage.setItem('cw_tlikes', totalLikesToday);
+            localStorage.setItem('cw_tcomms', totalCommsToday);
             localStorage.setItem('cw_refs', referrals);
             localStorage.setItem('cw_dcount', dailyMonetizedCount);
             localStorage.setItem('cw_posts', JSON.stringify(posts));
@@ -506,6 +648,11 @@
             window.scrollTo(0,0);
         }
 
+        function scrollToMonetizeGuide() {
+            switchTab('perfil', document.querySelectorAll('nav .nav-item')[3]);
+            document.getElementById('monetizeGuideBox').scrollIntoView({ behavior: 'smooth' });
+        }
+
         function handlePublishNavClick() {
             switchTab('home', document.querySelectorAll('nav .nav-item')[0]);
             const box = document.getElementById('newPostBox');
@@ -513,7 +660,7 @@
             if (dailyMonetizedCount >= 3) {
                 const diff = Date.now() - lastActionTime;
                 if (diff < 24 * 60 * 60 * 1000) {
-                    showToast("⚠️ Has agotado tus 3 publicaciones monetizables de hoy. Publicación saldrá normal.");
+                    showToast("⚠️ Has agotado tus 3 publicaciones monetizables de hoy. Tu post saldrá como normal.");
                 }
             } else {
                 if (!pendingMonetizationActivation) {
@@ -538,9 +685,7 @@
         }
 
         function executePublish() {
-            const title = document.getElementById('postTitle').value.trim();
             const text = document.getElementById('postInput').value.trim();
-
             if (!text) {
                 showToast("Escribe contenido para publicar.");
                 return;
@@ -558,7 +703,7 @@
 
             posts.unshift({
                 id: Date.now(),
-                user: title ? (title.startsWith('@') ? title : `@${title}`) : "@JorgeCalas",
+                user: "@JorgeCalas",
                 time: "Hace un momento",
                 text: text,
                 media: tempMediaData,
@@ -569,10 +714,9 @@
                 tier: tier.name,
                 maxLikes: tier.maxLikes,
                 createdAt: Date.now(),
-                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000) // 5 días
+                expiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000)
             });
 
-            document.getElementById('postTitle').value = '';
             document.getElementById('postInput').value = '';
             document.getElementById('mediaFile').value = '';
             document.getElementById('mediaFileName').innerText = '';
@@ -581,7 +725,30 @@
 
             updateUI();
             renderFeed();
-            showToast(isMonetizedThisPost ? "🚀 ¡Publicación monetizable creada!" : "📢 Publicación normal creada.");
+            showToast(isMonetizedThisPost ? "🚀 ¡Publicación monetizada creada!" : "📢 Publicación normal creada.");
+        }
+
+        function deletePost(id) {
+            posts = posts.filter(p => p.id !== id);
+            updateUI();
+            renderFeed();
+            showToast("🗑️ Publicación eliminada.");
+        }
+
+        function editPost(id) {
+            const post = posts.find(p => p.id !== undefined && p.id === id);
+            if (!post) return;
+            const newText = prompt("Editar texto de la publicación:", post.text);
+            if (newText !== null && newText.trim() !== "") {
+                post.text = newText.trim();
+                updateUI();
+                renderFeed();
+                showToast("✏️ Publicación actualizada.");
+            }
+        }
+
+        function reportPost(id) {
+            showToast("🚨 Publicación reportada al administrador. Gracias por mantener segura la comunidad.");
         }
 
         function startActivationFlow() {
@@ -619,7 +786,7 @@
         function closeAdModal() {
             document.getElementById('adModal').style.display = 'none';
             pendingMonetizationActivation = true;
-            showToast("✨ ¡Activación completada! Ve al botón Publicar (+) para subir tu contenido.");
+            showToast("✨ ¡Activación completada! Ve a Publicar (+) para subir tu contenido.");
             updateUI();
         }
 
@@ -660,12 +827,32 @@
             cooldownBox.innerText = "";
         }
 
+        // Renderizado del Feed con inyección del Banner 300x250 cada 4 posts
         function renderFeed() {
             const container = document.getElementById('feedContainer');
             container.innerHTML = '';
             const now = Date.now();
 
             posts.forEach((post, index) => {
+                // Inyectar banner de Adsterra 300x250 cada 4 publicaciones
+                if (index > 0 && index % 4 === 0) {
+                    const adCard = document.createElement('div');
+                    adCard.className = 'ad-card-feed';
+                    adCard.innerHTML = `
+                        <script>
+                          atOptions = {
+                            'key' : '4dfb9a5937a21eac92dacd7d5199d46c',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                          };
+                        </script>
+                        <script src="https://bicea.org/22/4dfb9a5937a21eac92dacd7d5199d46c"></script>
+                    `;
+                    container.appendChild(adCard);
+                }
+
                 let isExpired = post.monetized && (now > post.expiresAt);
                 const commentsHTML = post.comments.map(c => `<div class="comment-item">💬 ${c}</div>`).join('');
                 const mediaHTML = post.media ? `<img src="${post.media}" class="post-media" onerror="this.style.display='none'">` : '';
@@ -677,6 +864,15 @@
                     tagText = isExpired ? "Expirado" : `Monetizado (${post.tier})`;
                 }
 
+                const isOwner = (post.user === "@JorgeCalas");
+                const ownerActionsHTML = isOwner ? `
+                    <div class="owner-actions">
+                        <button onclick="editPost(${post.id})">Editar</button>
+                        <button onclick="deletePost(${post.id})">Borrar</button>
+                    </div>
+                ` : '';
+
+                // Verificar restricción de 24h para likes únicos a este post
                 const card = document.createElement('div');
                 card.className = 'post-card';
                 card.innerHTML = `
@@ -684,6 +880,7 @@
                     <div class="post-header"><span>${post.user} • ${post.time}</span></div>
                     <div class="post-content">${post.text}</div>
                     ${mediaHTML}
+                    ${ownerActionsHTML}
                     <div class="post-actions">
                         <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
                             <span class="icon">${post.liked ? '❤️' : '🤍'}</span> ${post.likes}
@@ -691,8 +888,8 @@
                         <button class="action-btn" onclick="toggleComments(${index})">
                             <span class="icon">💬</span> ${post.comments.length}
                         </button>
-                        <button class="action-btn" onclick="sharePost()">
-                            <span class="icon">🔗</span> Compartir
+                        <button class="action-btn report-btn" onclick="reportPost(${post.id})">
+                            ⚠️ Reportar
                         </button>
                     </div>
                     <div class="comments-section" id="comments-${index}">
@@ -712,34 +909,45 @@
             const now = Date.now();
             const isPostActive = post.monetized && (now <= post.expiresAt);
 
+            // Validar restricción de 24h por objetivo o límite diario de 40 likes
+            const lastLikedTime = interactedUsers[post.id] || 0;
+            const hoursSinceLastLike = (now - lastLikedTime) / (1000 * 60 * 60);
+
             if (post.liked) {
                 post.likes--;
                 post.liked = false;
-                totalLikes = Math.max(0, totalLikes - 1);
+                totalLikesToday = Math.max(0, totalLikesToday - 1);
                 points += 10;
+                delete interactedUsers[post.id];
             } else {
+                if (hoursSinceLastLike < 24 && lastLikedTime !== 0) {
+                    showToast("⚠️ Ya le diste like a este usuario/post en las últimas 24 horas.");
+                    return;
+                }
                 if (points < 10) {
                     showToast("⚠️ Saldo insuficiente (Requiere 10 Pts)");
                     return;
                 }
-                if (totalLikes >= 40) {
-                    showToast("⚠️ Límite de 40 likes diarios alcanzado");
+                if (totalLikesToday >= 40) {
+                    showToast("⚠️ Límite de 40 likes diarios alcanzado (Se reinicia a las 6:00 PM)");
                     return;
                 }
                 if (isPostActive && post.likes >= post.maxLikes) {
-                    showToast(`⚠️ Este post alcanzó su límite máximo de ${post.maxLikes} likes para nivel ${post.tier}.`);
+                    showToast(`⚠️ Este post alcanzó su límite máximo de ${post.maxLikes} likes.`);
                     return;
                 }
 
                 points -= 10;
-                totalLikes++;
+                totalLikesToday++;
                 post.likes++;
                 post.liked = true;
+                interactedUsers[post.id] = now;
 
                 if (isPostActive) {
                     points += 10; // +10 Pts (0.001 USD)
                 }
             }
+            localStorage.setItem('cw_interacted', JSON.stringify(interactedUsers));
             updateUI();
             renderFeed();
         }
@@ -754,8 +962,8 @@
                 showToast("⚠️ Saldo insuficiente para comentar (Requiere 10 Pts)");
                 return;
             }
-            if (totalComments >= 40) {
-                showToast("⚠️ Límite de 40 comentarios diarios alcanzado");
+            if (totalCommsToday >= 40) {
+                showToast("⚠️ Límite de 40 comentarios diarios alcanzado (Se reinicia a las 6:00 PM)");
                 return;
             }
 
@@ -763,7 +971,7 @@
             const text = input.value.trim();
             if (text !== "") {
                 points -= 10;
-                totalComments++;
+                totalCommsToday++;
                 posts[index].comments.push(text);
                 
                 const now = Date.now();
@@ -778,16 +986,13 @@
             }
         }
 
-        function sharePost() {
-            showToast("🔗 Enlace copiado al portapapeles");
-        }
-
         setInterval(() => {
             checkTimersAndButtons();
+            checkDailyReset6PM();
         }, 1000);
 
         updateUI();
         renderFeed();
     </script>
 </body>
-</html>
+                </html>
