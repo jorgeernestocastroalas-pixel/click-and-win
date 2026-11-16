@@ -14,7 +14,7 @@
         body {
             background-color: #121212;
             color: #ffffff;
-            padding-bottom: 70px; /* Espacio para la barra inferior */
+            padding-bottom: 75px;
         }
         header {
             background-color: #1e1e1e;
@@ -26,13 +26,23 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .points-badge {
+            background-color: #2a2a2a;
+            color: #4cd137;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #4cd137;
         }
         .container {
             padding: 15px;
             max-width: 600px;
             margin: 0 auto;
         }
-        /* Bloque de Anuncio / Banner */
         .ad-banner {
             background-color: #2a2a2a;
             border: 1px dashed #444;
@@ -43,7 +53,38 @@
             color: #aaa;
             font-size: 14px;
         }
-        /* Tarjeta de Publicación / Contenido */
+        /* Caja para nueva publicación */
+        .new-post-box {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            display: none; /* Oculta hasta tocar Publicar */
+        }
+        .new-post-box textarea {
+            width: 100%;
+            background-color: #121212;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 14px;
+            resize: none;
+            margin-bottom: 8px;
+        }
+        .publish-btn {
+            background-color: #4cd137;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+        /* Tarjetas del Feed */
         .post-card {
             background-color: #1e1e1e;
             border-radius: 10px;
@@ -52,9 +93,11 @@
             border: 1px solid #333;
         }
         .post-header {
-            font-size: 14px;
+            font-size: 13px;
             color: #888;
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
         .post-content {
             font-size: 15px;
@@ -76,11 +119,70 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: transform 0.1s;
         }
-        .action-btn:hover {
+        .action-btn:active {
+            transform: scale(0.92);
+        }
+        .action-btn.liked {
+            color: #ff4757;
+            font-weight: bold;
+        }
+        /* Sección de comentarios */
+        .comments-section {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #2a2a2a;
+            display: none;
+        }
+        .comment-item {
+            background-color: #151515;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #ddd;
+        }
+        .comment-input-row {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .comment-input-row input {
+            flex: 1;
+            background-color: #121212;
+            border: 1px solid #444;
             color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
         }
-        /* Barra de Navegación Inferior estilo Telegram Mini App */
+        .comment-input-row button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        /* Notificación flotante (Toast) */
+        .toast {
+            position: fixed;
+            top: 65px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4cd137;
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        /* Barra Inferior */
         nav {
             position: fixed;
             bottom: 0;
@@ -106,7 +208,7 @@
             gap: 4px;
         }
         .nav-item.active {
-            color: #4cd137; /* Tono activo llamativo */
+            color: #4cd137;
         }
         .nav-item span.icon {
             font-size: 20px;
@@ -116,67 +218,224 @@
 <body>
 
     <header>
-        Click & Win 🎮
+        <span>Click & Win 🎮</span>
+        <span class="points-badge" id="userPoints">⚡ 100 Pts</span>
     </header>
 
+    <div class="toast" id="toastMsg">¡Acción completada!</div>
+
     <div class="container">
-        <!-- Banner Superior (Adsterra) -->
+        <!-- Banner Superior -->
         <div class="ad-banner">
             [Espacio para Banner Publicitario Adsterra]
         </div>
 
-        <!-- Ejemplo de Publicación en el Feed -->
-        <div class="post-card">
-            <div class="post-header">@CreadorLocal • Hace 5 min</div>
-            <div class="post-content">
-                ¡Bienvenidos a la red social gamificada! Explora, interactúa y genera recompensas con responsabilidad. 🚀
-            </div>
-            <div class="post-actions">
-                <button class="action-btn"><span class="icon">❤️</span> 12</button>
-                <button class="action-btn"><span class="icon">💬</span> 3</button>
-                <button class="action-btn"><span class="icon">🎁</span> Dar Tip</button>
-                <button class="action-btn"><span class="icon">🔗</span> Compartir</button>
-            </div>
+        <!-- Formulario para crear publicación -->
+        <div class="new-post-box" id="newPostBox">
+            <textarea id="postInput" rows="3" placeholder="¿Qué quieres compartir hoy en Click & Win?"></textarea>
+            <button class="publish-btn" onclick="createPost()">Publicar ahora</button>
         </div>
 
-        <!-- Segundo Ejemplo de Publicación -->
-        <div class="post-card">
-            <div class="post-header">@JCalas • Hace 1 hora</div>
-            <div class="post-content">
-                Recordatorio: Recuerda cumplir con tus visualizaciones diarias para activar las comisiones de referidos.
-            </div>
-            <div class="post-actions">
-                <button class="action-btn"><span class="icon">❤️</span> 25</button>
-                <button class="action-btn"><span class="icon">💬</span> 8</button>
-                <button class="action-btn"><span class="icon">🎁</span> Dar Tip</button>
-                <button class="action-btn"><span class="icon">🔗</span> Compartir</button>
-            </div>
-        </div>
+        <!-- Contenedor dinámico del Feed -->
+        <div id="feedContainer"></div>
     </div>
 
     <!-- Barra de Navegación Inferior -->
     <nav>
-        <button class="nav-item active">
+        <button class="nav-item active" onclick="setActiveNav(this, 'home')">
             <span class="icon">🏠</span>
             Home
         </button>
-        <button class="nav-item">
+        <button class="nav-item" onclick="setActiveNav(this, 'videos')">
             <span class="icon">🎬</span>
             Videos
         </button>
-        <button class="nav-item">
+        <button class="nav-item" onclick="togglePostBox()">
             <span class="icon">➕</span>
             Publicar
         </button>
-        <button class="nav-item">
+        <button class="nav-item" onclick="setActiveNav(this, 'ganancias')">
             <span class="icon">💲</span>
             Ganancias
         </button>
-        <button class="nav-item">
+        <button class="nav-item" onclick="setActiveNav(this, 'perfil')">
             <span class="icon">👤</span>
             Perfil
         </button>
     </nav>
+
+    <script>
+        // Puntos iniciales del usuario
+        let points = parseInt(localStorage.getItem('cw_points')) || 100;
+
+        // Publicaciones iniciales por defecto
+        const defaultPosts = [
+            {
+                id: 1,
+                user: "@CreadorLocal",
+                time: "Hace 5 min",
+                text: "¡Bienvenidos a la red social gamificada! Explora, interactúa y genera recompensas con responsabilidad. 🚀",
+                likes: 12,
+                liked: false,
+                comments: ["¡Excelente plataforma!", "Vamos con todo 🔥"]
+            },
+            {
+                id: 2,
+                user: "@JCalas",
+                time: "Hace 1 hora",
+                text: "Recordatorio: Recuerda cumplir con tus visualizaciones diarias para activar las comisiones de referidos.",
+                likes: 25,
+                liked: false,
+                comments: ["¡Entendido!"]
+            }
+        ];
+
+        // Cargar publicaciones guardadas o usar las iniciales
+        let posts = JSON.parse(localStorage.getItem('cw_posts')) || defaultPosts;
+
+        function updatePointsDisplay() {
+            document.getElementById('userPoints').innerText = `⚡ ${points} Pts`;
+            localStorage.setItem('cw_points', points);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toastMsg');
+            toast.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2200);
+        }
+
+        function renderFeed() {
+            const container = document.getElementById('feedContainer');
+            container.innerHTML = '';
+
+            posts.forEach((post, index) => {
+                const commentsHTML = post.comments.map(c => `<div class="comment-item">💬 ${c}</div>`).join('');
+
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.innerHTML = `
+                    <div class="post-header">
+                        <span>${post.user} • ${post.time}</span>
+                    </div>
+                    <div class="post-content">${post.text}</div>
+                    <div class="post-actions">
+                        <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
+                            <span class="icon">${post.liked ? '❤️' : '🤍'}</span> ${post.likes}
+                        </button>
+                        <button class="action-btn" onclick="toggleComments(${index})">
+                            <span class="icon">💬</span> ${post.comments.length}
+                        </button>
+                        <button class="action-btn" onclick="sendTip(${index})">
+                            <span class="icon">🎁</span> Dar Tip
+                        </button>
+                        <button class="action-btn" onclick="sharePost()">
+                            <span class="icon">🔗</span> Compartir
+                        </button>
+                    </div>
+                    <div class="comments-section" id="comments-${index}">
+                        ${commentsHTML}
+                        <div class="comment-input-row">
+                            <input type="text" id="comment-input-${index}" placeholder="Escribe un comentario...">
+                            <button onclick="addComment(${index})">Enviar</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            localStorage.setItem('cw_posts', JSON.stringify(posts));
+        }
+
+        function toggleLike(index) {
+            if (posts[index].liked) {
+                posts[index].likes--;
+                posts[index].liked = false;
+            } else {
+                posts[index].likes++;
+                posts[index].liked = true;
+                points += 2;
+                updatePointsDisplay();
+                showToast("+2 Pts por interactuar ❤️");
+            }
+            renderFeed();
+        }
+
+        function toggleComments(index) {
+            const section = document.getElementById(`comments-${index}`);
+            section.style.display = section.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function addComment(index) {
+            const input = document.getElementById(`comment-input-${index}`);
+            const text = input.value.trim();
+            if (text !== "") {
+                posts[index].comments.push(text);
+                points += 5;
+                updatePointsDisplay();
+                showToast("+5 Pts por comentar 💬");
+                renderFeed();
+                document.getElementById(`comments-${index}`).style.display = 'block';
+            }
+        }
+
+        function sendTip(index) {
+            if (points >= 10) {
+                points -= 10;
+                updatePointsDisplay();
+                showToast(`¡Enviaste 10 Pts de Tip a ${posts[index].user}! 🎁`);
+            } else {
+                showToast("No tienes suficientes puntos (Mín. 10 Pts)");
+            }
+        }
+
+        function sharePost() {
+            points += 3;
+            updatePointsDisplay();
+            showToast("¡Enlace copiado! +3 Pts 🔗");
+        }
+
+        function togglePostBox() {
+            const box = document.getElementById('newPostBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function createPost() {
+            const input = document.getElementById('postInput');
+            const text = input.value.trim();
+            if (text !== "") {
+                posts.unshift({
+                    id: Date.now(),
+                    user: "@JCalas",
+                    time: "Ahora mismo",
+                    text: text,
+                    likes: 1,
+                    liked: true,
+                    comments: []
+                });
+                input.value = '';
+                document.getElementById('newPostBox').style.display = 'none';
+                points += 10;
+                updatePointsDisplay();
+                showToast("¡Publicación creada! +10 Pts 🚀");
+                renderFeed();
+            }
+        }
+
+        function setActiveNav(element, tab) {
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            if (tab !== 'home') {
+                showToast(`Sección "${tab.toUpperCase()}" en construcción 🛠️`);
+            }
+        }
+
+        // Inicializar aplicación
+        updatePointsDisplay();
+        renderFeed();
+    </script>
 
 </body>
 </html>
